@@ -23,6 +23,3 @@ spec:
   releaseName: external-dns
   storageNamespace: external-dns
   targetNamespace: external-dns
-  values:
-    crds:
-      enabled: true
