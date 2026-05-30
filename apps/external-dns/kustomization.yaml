@@ -4,3 +4,13 @@ resources:
   - repo.yaml
   - release.yaml
   - secret.yaml
+configMapGenerator:
+  - name: external-dns-values
+    namespace: flux-system
+    files:
+      - values.yaml
+    options:
+      labels:
+        reconcile.fluxcd.io/watch: "Enabled"
+configurations:
+  - kustomizeconfig.yaml
