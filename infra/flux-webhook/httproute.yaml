@@ -8,7 +8,7 @@ spec:
     - group: gateway.networking.k8s.io
       kind: Gateway
       name: web
-      namespace: gateway-namespace
+      namespace: infra
       sectionName: web-gw
   hostnames:
     - "webhook.alixroden.co.uk"
