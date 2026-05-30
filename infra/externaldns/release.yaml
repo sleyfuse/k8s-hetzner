@@ -13,5 +13,5 @@ spec:
       version: '1.*'
       valuesFiles:
         - values.yaml
-    interval: 10m0s
+  interval: 10m0s
   releaseName: external-dns
