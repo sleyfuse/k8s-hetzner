@@ -6,4 +6,3 @@ resources:
   - receiver.yaml
   - secret.yaml
   - loadbalancer.yaml
-  - networkpolicy.yaml
