@@ -1,0 +1,9 @@
+httproute:
+  enabled: true
+  parentRefs:
+    - kind: Gateway
+      name: web
+      namespace: infra
+      sectionName: websecure-gw
+  hostnames:
+    - headlamp.alixroden.co.uk
