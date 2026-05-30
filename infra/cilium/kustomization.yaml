@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - loadbalancerippool.yaml
   - l2announcements.yaml
+  - gateway.yaml
