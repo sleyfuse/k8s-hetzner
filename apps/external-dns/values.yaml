@@ -11,3 +11,6 @@ provider:
           secretKeyRef:
             name: hetzner
             key: token
+sources:
+  - gateway-httproute
+  - gateway-tlsroute
