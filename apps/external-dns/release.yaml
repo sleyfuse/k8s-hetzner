@@ -17,7 +17,6 @@ spec:
   valuesFrom:
     - kind: ConfigMap
       name: external-dns-values
-      namespace: flux-system
   install:
     createNamespace: true
   interval: 1m0s
