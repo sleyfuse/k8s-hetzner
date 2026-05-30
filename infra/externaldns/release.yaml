@@ -11,8 +11,6 @@ spec:
         kind: HelmRepository
         name: external-dns
       version: '1.*'
-    interval: 1h0m0s
-    valuesFrom:
-    - kind: ConfigMap
-      name: external-dns-values
-      valuesKey: helm-values.yaml
+      valuesFiles:
+        - values.yaml
+    interval: 10m0s
