@@ -7,3 +7,7 @@ httproute:
       sectionName: websecure-gw
   hostnames:
     - headlamp.alixroden.co.uk
+pluginManager:
+  enabled: true
+config:
+  enableHelm: true
