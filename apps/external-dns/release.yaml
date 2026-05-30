@@ -14,10 +14,10 @@ spec:
         name: external-dns
         namespace: flux-system
       version: "1.21.1"
-      valuesFrom:
-        - kind: ConfigMap
-          name: external-dns-values
-          namespace: flux-system
+  valuesFrom:
+    - kind: ConfigMap
+      name: external-dns-values
+      namespace: flux-system
   install:
     createNamespace: true
   interval: 1m0s
