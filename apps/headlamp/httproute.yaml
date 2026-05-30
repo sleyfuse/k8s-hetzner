@@ -9,7 +9,7 @@ spec:
       kind: Gateway
       name: web
       namespace: infra
-      sectionName: web-gw
+      sectionName: websecure-gw
   hostnames:
     - "headlamp.alixroden.co.uk"
   rules:
