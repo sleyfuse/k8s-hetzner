@@ -4,3 +4,4 @@ resources:
   - clusterissuer.yaml
   - certificate.yaml
   - rbac.yaml
+  - referencegrant.yaml
