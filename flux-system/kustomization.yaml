@@ -5,6 +5,7 @@ resources:
   - gotk-sync.yaml
   - apps.yaml
   - infra.yaml
+  - configurations.yaml
 patches:
   - patch: |-
       apiVersion: networking.k8s.io/v1
