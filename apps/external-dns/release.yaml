@@ -14,6 +14,8 @@ spec:
         name: external-dns
         namespace: flux-system
       version: "1.21.1"
+      valuesFiles:
+        - values.yaml
   install:
     createNamespace: true
   interval: 1m0s
