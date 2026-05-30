@@ -14,3 +14,5 @@ configMapGenerator:
         reconcile.fluxcd.io/watch: "Enabled"
 configurations:
   - kustomizeconfig.yaml
+generatorOptions:
+  disableNameSuffixHash: true
