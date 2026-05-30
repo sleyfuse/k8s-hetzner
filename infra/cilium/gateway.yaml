@@ -18,3 +18,9 @@ spec:
       name: websecure-gw
       port: 443
       protocol: HTTPS
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: alixroden-co-uk-tls
+            kind: Secret
+            namespace: cert-manager
