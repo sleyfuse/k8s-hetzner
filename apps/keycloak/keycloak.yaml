@@ -19,6 +19,10 @@ spec:
     vendor: postgres
   ingress:
     enabled: false
+  hostname:
+    hostname: keycloak.alixroden.co.uk
+    strict: false
+    admin: keycloakadmin.alixroden.co.uk
   http:
     httpEnabled: true
   instances: 1
