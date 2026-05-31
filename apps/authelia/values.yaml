@@ -42,6 +42,8 @@ secret:
   additionalSecrets:
     jwk-rsa:
       items: [{ key: private.pem, path: private.pem }]
+    db-creds:
+      items: [{ key: password, path: storage.postgres.password.txt }]
 pod:
   kind: Deployment
   env: [{ name: TZ, value: Europe/Helsinki }]
@@ -52,3 +54,14 @@ pod:
   extraVolumes:
     - name: users
       secret: { secretName: users }
+storage:
+  postgres:
+    enabled: true
+    deploy: true
+    address: tcp://authelia-postgresql:5432
+    database: authelia
+    username: authelia
+    password: { secret_name: db-creds }
+postgresql:
+  auth:
+    existingSecret: db-creds
