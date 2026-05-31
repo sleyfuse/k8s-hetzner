@@ -3,8 +3,16 @@ keycloak:
   hostnameAdmin: "https://auth.alixroden.co.uk"
   username: "admin"
   password: "KXX14cdup$"
+  proxyHeaders: "xforwarded"
 persistence:
   enabled: true
   storageClass: proxmox-data-xfs
   accessMode: ReadWriteOnce
   size: 10Gi
+resources:
+  requests:
+    memory: "1Gi"
+    cpu: "500m"
+  limits:
+    memory: "2Gi"
+    cpu: "1000m"
