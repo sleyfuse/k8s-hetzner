@@ -8,9 +8,7 @@ metadata:
     gethomepage.dev/name: Headlamp
     gethomepage.dev/group: Administration
     gethomepage.dev/icon: headlamp.png
-    gethomepage.dev/widget.url: "https://headlamp.alixroden.co.uk"
-    gethomepage.dev/pod-selector: ""
-    gethomepage.dev/widget-type: "none"
+    gethomepage.dev/url: "https://headlamp.alixroden.co.uk"
 spec:
   parentRefs:
     - group: gateway.networking.k8s.io
