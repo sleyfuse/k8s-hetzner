@@ -7,13 +7,12 @@ metadata:
 spec:
   chart:
     spec:
-      chart: headlamp
+      chart: ./apps/headlamp/headlamp
       reconcileStrategy: ChartVersion
       sourceRef:
-        kind: HelmRepository
-        name: headlamp
+        kind: GitRepository
+        name: flux-system
         namespace: flux-system
-      version: "0.42.0"
   valuesFrom:
     - kind: ConfigMap
       name: headlamp-values
