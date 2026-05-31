@@ -1,0 +1,18 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: authelia
+  namespace: auhtelia
+spec:
+  parentRefs:
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      name: web
+      namespace: infra
+      sectionName: websecure-gw
+  hostnames:
+    - "authelia.alixroden.co.uk"
+  rules:
+    - backendRefs:
+        - name: authelia
+          port: 80
