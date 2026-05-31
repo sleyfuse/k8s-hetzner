@@ -10,7 +10,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`keycloak.alixroden.co.uk`)
+    - match: Host(`keycloak.alixroden.co.uk`) && PathPrefix(`/`)
       kind: Rule
       services:
         - kind: Service
