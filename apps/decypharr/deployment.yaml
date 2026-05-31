@@ -29,12 +29,12 @@ spec:
             - mountPath: /mnt
               name: mediamount
               mountPropagation: Bidirectional
-          volumes:
-            - name: mediamount
-              persistentVolumeClaim:
-                claimName: media-pvc
           securityContext:
             privileged: true
+      volumes:
+        - name: mediamount
+          persistentVolumeClaim:
+            claimName: media-pvc
       resources:
         requests:
           nextflow.io/fuse: "1"
