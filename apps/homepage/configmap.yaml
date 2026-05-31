@@ -9,7 +9,11 @@ data:
   kubernetes.yaml: |
     mode: cluster
     gateway: true
-  settings.yaml: ""
+  settings.yaml: |
+    title: "alixroden.co.uk"
+    theme: dark
+    color: rose
+    cardBlur: md
   custom.css: ""
   custom.js: ""
   bookmarks.yaml: ""
