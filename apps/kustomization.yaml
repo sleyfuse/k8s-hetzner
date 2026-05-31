@@ -12,3 +12,4 @@ resources:
   - intel-device-plugins-operator
   - intel-device-plugins-gpu
   - envoy-gateway
+  - homepage
