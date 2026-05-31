@@ -20,16 +20,22 @@ data:
           description: "Kubernetes Control Plane"
           proxmoxNode: pve
           proxmoxVMID: 100
+          widget:
+            type: proxmox
       - Worker1:
           icon: kubernetes.png
           description: "Kubernetes Worker Node 1"
           proxmoxNode: pve
           proxmoxVMID: 101
+          widget:
+            type: proxmox
       - Worker2:
           icon: kubernetes.png
           description: "Kubernetes Worker Node 2"
           proxmoxNode: pve
           proxmoxVMID: 102
+          widget:
+            type: proxmox
   proxmox.yaml: |
     pve:
       url: "https://alixroden.co.uk:8006"
