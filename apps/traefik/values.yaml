@@ -3,11 +3,14 @@ ingressRoute:
   dashboard:
     enabled: true
     annotations:
-      external-dns.alpha.kubernetes.io/target: traefik.example.com
+      external-dns.alpha.kubernetes.io/target: traefik.alixroden.co.uk
     matchRule: Host(`dashboard.alixroden.co.uk`)
     entryPoints:
       - websecure
     ingressClassName: traefik
+    middlewares:
+      - name: traefik-forward-auth
+        namespace: traefik
     tls:
       secretName: alixroden-co-uk-tls
 providers:
