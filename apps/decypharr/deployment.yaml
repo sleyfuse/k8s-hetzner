@@ -32,6 +32,8 @@ spec:
           securityContext:
             privileged: true
       resources:
+        requests:
+          nextflow.io/fuse: "1"
         limits:
           nextflow.io/fuse: "1"
       terminationGracePeriodSeconds: 0
