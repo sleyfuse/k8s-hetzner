@@ -1,2 +1,9 @@
-keycloak:
-  image: bitnami/keycloak:latest
+image:
+  registry: docker.io
+  repository: bitnami/keycloak
+  tag: latest
+postgresql:
+  image:
+    registry: docker.io
+    repository: bitnami/postgresql
+    tag: latest
