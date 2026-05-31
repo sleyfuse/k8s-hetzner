@@ -24,6 +24,7 @@ data:
             type: glances
             url: http://192.168.1.100:61208
             metric: info
+            version: 4
       - Worker1:
           icon: kubernetes.png
           description: "Kubernetes Worker Node 1"
@@ -33,6 +34,7 @@ data:
             type: glances
             url: http://192.168.1.101:61208
             metric: info
+            version: 4
       - Worker2:
           icon: kubernetes.png
           description: "Kubernetes Worker Node 2"
@@ -42,6 +44,7 @@ data:
             type: glances
             url: http://192.168.1.102:61208
             metric: info
+            version: 4
   proxmox.yaml: |
     pve:
       url: "https://alixroden.co.uk:8006"
