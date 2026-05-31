@@ -5,10 +5,10 @@ metadata:
   name: "authelia-extauthz-by-gateway"
   namespace: "authelia"
 spec:
-  targetRefs:
-    - group: "gateway.networking.k8s.io"
-      kind: "HTTPRoute"
-      name: "headlamp"
+  targetSelectors:
+    - kind: HTTPRoute
+      matchLabels:
+        security: required
   extAuth:
     headersToExtAuth:
       - "accept"
