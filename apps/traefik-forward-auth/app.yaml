@@ -30,24 +30,24 @@ spec:
           env:
             - name: DOMAIN
               value: "alixroden.co.uk"
-            # INSECURE_COOKIE is required unless using https entrypoint
             - name: INSECURE_COOKIE
               value: "false"
-            - name: PROVIDERS_GOOGLE_CLIENT_ID
+            - name: AUTH_HOST
+              value: "auth.alixroden.co.uk"
+            - name: COOKIE_DOMAIN
+              value: "alixroden.co.uk"
+            - name: OIDC_ISSUER
+              value: "https://auth.alixroden.co.uk/realms/master"
+            - name: CLIENT_ID
               valueFrom:
                 secretKeyRef:
                   name: traefik-forward-auth-secrets
                   key: traefik-forward-auth-google-client-id
-            - name: PROVIDERS_GOOGLE_CLIENT_SECRET
+            - name: CLIENT_SECRET
               valueFrom:
                 secretKeyRef:
                   name: traefik-forward-auth-secrets
                   key: traefik-forward-auth-google-client-secret
-            - name: SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: traefik-forward-auth-secrets
-                  key: traefik-forward-auth-secret
 
 ---
 #
@@ -105,4 +105,3 @@ type: Opaque
 data:
   traefik-forward-auth-google-client-id: "bDhnZm5wTFZtN0RnK2NpR2hrQzl5MEplaG1vbnRYRFhwYWFRVFNZQ3M4QT0="
   traefik-forward-auth-google-client-secret: "T1poVzZMS2tiNm5JKy9DTDdjeVozS1hqSEVoQ0ZzM0l3dEJLbHpZNUR5cz0="
-  traefik-forward-auth-secret: "QWtWZGZHOFVnMS9TYXh4MmU2Y3NOVGYvWW9rRGE3VXJGblNtcGpPU1FzWT0="
