@@ -3,7 +3,6 @@ kind: Service
 metadata:
   name: traefik-forward-auth
   namespace: traefik
-
 spec:
   selector:
     app: traefik-forward-auth
@@ -29,31 +28,17 @@ spec:
     metadata:
       labels:
         app: traefik-forward-auth
-      annotations:
-        container.apparmor.security.beta.kubernetes.io/traefik-forward-auth: runtime/default
     spec:
       containers:
         - name: traefik-forward-auth
           image: thomseddon/traefik-forward-auth
           imagePullPolicy: Always
-          securityContext:
-            readOnlyRootFilesystem: true
-            runAsNonRoot: true
-            runAsUser: 65534
-            runAsGroup: 65534
-            capabilities:
-              drop:
-                - ALL
           livenessProbe:
             failureThreshold: 3
             tcpSocket:
               port: 4181
             initialDelaySeconds: 10
             periodSeconds: 10
-          resources:
-            limits:
-              memory: "10Mi"
-              cpu: "100m"
           ports:
             - name: http
               containerPort: 4181

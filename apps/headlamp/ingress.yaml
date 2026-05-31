@@ -19,3 +19,5 @@ spec:
       middlewares:
         - name: traefik-forward-auth
           namespace: traefik
+  tls:
+    secretName: alixroden-co-uk-tls
