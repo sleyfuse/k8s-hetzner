@@ -3,6 +3,9 @@ kind: IngressRoute
 metadata:
   name: headlamp
   namespace: kube-system
+  annotations:
+    external-dns.alpha.kubernetes.io/target: traefik.alixroden.co.uk
+    kubernetes.io/ingress.class: traefik
 spec:
   entryPoints:
     - web
