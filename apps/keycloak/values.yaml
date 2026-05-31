@@ -1,0 +1,10 @@
+keycloak:
+  hostname: "https://auth.alixroden.co.uk"
+  hostnameAdmin: "https://auth.alixroden.co.uk"
+  username: "admin"
+  password: "KXX14cdup$"
+persistence:
+  enabled: true
+  storageClass: proxmox-data-xfs
+  accessMode: ReadWriteOnce
+  size: 10Gi
