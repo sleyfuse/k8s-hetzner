@@ -5,17 +5,10 @@ data:
       inCluster: false
       unsafeUseServiceAccountToken: true
     volumes:
-      - name: kubeconfig
-        configMap:
-          name: headlamp-kubeconfig
       - name: headlamp-kubeconfig
         configMap:
           name: headlamp-kubeconfig
     volumeMounts:
-      - name: kubeconfig
-        mountPath: /etc/headlamp/kubeconfig
-        subPath: kubeconfig
-        readOnly: true
       - name: headlamp-kubeconfig
         mountPath: /home/headlamp/.config/Headlamp/kubeconfigs/config
         readOnly: true
