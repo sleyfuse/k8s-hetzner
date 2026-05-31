@@ -2,24 +2,17 @@ apiVersion: gateway.envoyproxy.io/v1alpha1
 kind: SecurityPolicy
 metadata:
   name: keycloak
-  namespace: keycloak
 spec:
-  targetSelectors:
-    - kind: HTTPRoute
-      matchLabels:
-        security: required
+  targetRefs:
+    - group: gateway.networking.k8s.io
+      kind: HTTPRoute
+      name: headlamp
+      namespace: headlamp
   oidc:
     provider:
-      backendRefs:
-        - kind: Service
-          name: keycloak
-          namespace: keycloak
-          port: 8080
       issuer: "http://auth.alixroden.co.uk/realms/master"
-      authorizationEndpoint: "http://auth.alixroden.co.uk/realms/master/protocol/openid-connect/auth"
-      tokenEndpoint: "http://auth.alixroden.co.uk/realms/master/protocol/openid-connect/token"
     clientID: "envoy"
     clientSecret:
       name: keycloak-client-secret
-    logoutPath: "/"
-    redirectURL: "https://auth.alixroden.co.uk/realms/master/broker/oidc/endpoint"
+    redirectURL: "https://headlamp.alixroden.co.uk/oauth2/callback"
+    logoutPath: "/headlamp/logout"
