@@ -6,7 +6,7 @@ resources:
   - external-dns
   - cert-manager-webhook-hetzner
   - headlamp
-  - proxmox-cloud-controller-managera
+  - proxmox-cloud-controller-manager
   - proxmox-csi-plugin
   - node-feature-discovery
   - intel-device-plugins-operator
