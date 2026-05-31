@@ -14,10 +14,9 @@ data:
   custom.js: ""
   bookmarks.yaml: ""
   services.yaml: |
-    - Proxmox:
+    - Cluster:
       - ControlPlane:
           icon: kubernetes.png
-          description: "Kubernetes Control Plane"
           proxmoxNode: pve
           proxmoxVMID: 100
           widget:
@@ -27,7 +26,6 @@ data:
             version: 4
       - Worker1:
           icon: kubernetes.png
-          description: "Kubernetes Worker Node 1"
           proxmoxNode: pve
           proxmoxVMID: 101
           widget:
@@ -37,7 +35,6 @@ data:
             version: 4
       - Worker2:
           icon: kubernetes.png
-          description: "Kubernetes Worker Node 2"
           proxmoxNode: pve
           proxmoxVMID: 102
           widget:

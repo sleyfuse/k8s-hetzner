@@ -6,12 +6,11 @@ metadata:
   annotations:
     gethomepage.dev/enabled: "true"
     gethomepage.dev/name: Headlamp
-    gethomepage.dev/group: Cluster Management
+    gethomepage.dev/group: Administration
     gethomepage.dev/icon: headlamp.png
     gethomepage.dev/widget.url: "https://headlamp.alixroden.co.uk"
     gethomepage.dev/pod-selector: ""
-    gethomepage.dev/widget-type: ""
-    gethomepage.dev/description: "Headlamp Kubernetes Dashboard"
+    gethomepage.dev/widget-type: "none"
 spec:
   parentRefs:
     - group: gateway.networking.k8s.io
