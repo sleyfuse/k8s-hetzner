@@ -40,4 +40,8 @@ spec:
         - name: mediamount
           persistentVolumeClaim:
             claimName: media-pvc
+        - name: config
+          persistentVolumeClaim:
+            claimName: config-pvc
+
       terminationGracePeriodSeconds: 0
