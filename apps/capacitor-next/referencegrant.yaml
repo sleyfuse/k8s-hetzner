@@ -11,3 +11,5 @@ spec:
   to:
     - group: ""
       kind: Service
+    - group: ""
+      kind: Secret
