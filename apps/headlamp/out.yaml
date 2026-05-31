@@ -3,8 +3,6 @@ data:
   values.yaml: |
     config:
       inCluster: false
-      extraArgs:
-        - "-kubeconfig=/etc/headlamp/kubeconfig"
       unsafeUseServiceAccountToken: true
     volumes:
       - name: kubeconfig
