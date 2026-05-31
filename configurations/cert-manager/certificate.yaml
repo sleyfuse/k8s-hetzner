@@ -3,6 +3,8 @@ kind: Certificate
 metadata:
   name: alixroden-co-uk-tls
   namespace: cert-manager
+  annotations:
+    ://emberstack.com: "true"
 spec:
   secretName: alixroden-co-uk-tls
   issuerRef:
