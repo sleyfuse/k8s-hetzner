@@ -45,53 +45,22 @@ spec:
           env:
             - name: DOMAIN
               value: "alixroden.co.uk"
-            - name: PROVIDERS_OIDC_CLIENT_SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: traefik-forward-auth
-                  key: PROVIDERS_OIDC_CLIENT_SECRET
-            - name: SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: traefik-forward-auth
-                  key: SECRET
-            - name: DEFAULT_PROVIDER
-              valueFrom:
-                configMapKeyRef:
-                  name: traefik-forward-auth
-                  key: DEFAULT_PROVIDER
-            - name: PROVIDERS_OIDC_ISSUER_URL
-              valueFrom:
-                configMapKeyRef:
-                  name: traefik-forward-auth
-                  key: PROVIDERS_OIDC_ISSUER_URL
-            - name: PROVIDERS_OIDC_CLIENT_ID
-              valueFrom:
-                configMapKeyRef:
-                  name: traefik-forward-auth
-                  key: PROVIDERS_OIDC_CLIENT_ID
-            - name: INSECURE_COOKIE
-              valueFrom:
-                configMapKeyRef:
-                  name: traefik-forward-auth
-                  key: INSECURE_COOKIE
             - name: COOKIE_DOMAIN
-              valueFrom:
-                configMapKeyRef:
-                  name: traefik-forward-auth
-                  key: COOKIE_DOMAIN
-            - name: DOMAINS
-              valueFrom:
-                configMapKeyRef:
-                  name: traefik-forward-auth
-                  key: DOMAINS
+              value: "alixroden.co.uk"
+            - name: CONFIG
+              value: "/config"
+            - name: SECRET
+              value: "VFY0SFhlRDhFQm1HTTdPbHJzOFFLTDdDc0VNTVpudFo="
             - name: AUTH_HOST
-              valueFrom:
-                configMapKeyRef:
-                  name: traefik-forward-auth
-                  key: AUTH_HOST
-            - name: URL_PATH
-              valueFrom:
-                configMapKeyRef:
-                  name: traefik-forward-auth
-                  key: URL_PATH
+              value: "tfa.alixroden.co.uk"
+          volumeMounts:
+            - name: config
+              mountPath: /config
+              subPath: traefik-forward-auth.ini
+      volumes:
+        - name: config
+          configMap:
+            name: traefik-forward-auth
+            items:
+              - key: traefik-forward-auth.ini
+                path: traefik-forward-auth.ini
