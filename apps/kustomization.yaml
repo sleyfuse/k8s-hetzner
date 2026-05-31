@@ -16,3 +16,4 @@ resources:
   - traefik-forward-auth
   - keycloak
   - kubernetes-reflector
+  - plex

@@ -1,0 +1,24 @@
+pms:
+  configStorage: 10Gi
+extraEnv:
+  PLEX_CLAIM: ""
+extraInitContainers:
+  - image: linuxserver/wireguard:latest
+    restartPolicy: Always
+    name: wg
+    env:
+      - name: TZ
+        value: "Europe/Helsinki"
+    volumeMounts:
+      - name: wg-conf
+        mountPath: /etc/wireguard/
+        readOnly: true
+    securityContext:
+      privileged: true
+      capabilities:
+        add:
+          - NET_ADMIN
+extraVolumes:
+  - name: wg-conf
+    secret:
+      secretName: wg-conf
