@@ -1,0 +1,12 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: node-feature-discovery
+  namespace: flux-system
+spec:
+  interval: 1m0s
+  type: oci
+  url: oci://registry.k8s.io/nfd/charts/node-feature-discovery
+  secretRef:
+    name: ghcr-auth

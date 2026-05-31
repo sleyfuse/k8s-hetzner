@@ -8,3 +8,4 @@ resources:
   - headlamp
   - proxmox-cloud-controller-manager
   - proxmox-csi-plugin
+  - node-feature-discovery
