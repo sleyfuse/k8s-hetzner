@@ -15,8 +15,6 @@ spec:
     spec:
       containers:
         - name: prowlarr
-          securityContext:
-            privileged: true
           image: linuxserver/prowlarr
           imagePullPolicy: Always
           ports:
