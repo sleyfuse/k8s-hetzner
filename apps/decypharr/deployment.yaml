@@ -29,6 +29,8 @@ spec:
             - mountPath: /mnt
               name: media_mount
               mountPropagation: Bidirectional
+          securityContext:
+            privileged: true
       resources:
         limits:
           nextflow.io/fuse: "1"
