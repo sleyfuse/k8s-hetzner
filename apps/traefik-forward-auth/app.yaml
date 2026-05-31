@@ -3,10 +3,11 @@ kind: Service
 metadata:
   name: traefik-forward-auth
   namespace: traefik
+  labels:
+    app: traefik-forward-auth
 spec:
   selector:
     app: traefik-forward-auth
-  type: LoadBalancer
   ports:
     - name: http
       port: 80
