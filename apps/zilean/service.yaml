@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: zilean
+  namespace: media
+  labels:
+    app: zilean
+spec:
+  selector:
+    app: zilean
+  ports:
+    - port: 8181
+      targetPort: 8181
+      name: http

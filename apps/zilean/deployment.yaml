@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: zilean
+  namespace: media
 spec:
   selector:
     matchLabels:
@@ -10,6 +11,7 @@ spec:
     metadata:
       labels:
         app: zilean
+      namespace: media
     spec:
       containers:
         - name: zilean
@@ -22,3 +24,17 @@ spec:
                 secretKeyRef:
                   name: zilean-db-credentials
                   key: password
+          volumeMounts:
+            - name: zilean-data
+              mountPath: /app/data
+            - name: zilean-tmp
+              mountPath: /tmp
+          tty: true
+      volumes:
+        - name: zilean-data
+          persistentVolumeClaim:
+            claimName: zilean-data-pvc
+        - name: zilean-tmp
+          emptyDir:
+            sizeLimit: "1Gi"
+            medium: Memory
