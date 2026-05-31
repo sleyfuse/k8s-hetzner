@@ -1,0 +1,87 @@
+apiVersion: v1
+data:
+  values.yaml: |
+    pluginManager:
+      enabled: true
+    config:
+      inCluster: false
+      extraArgs:
+        - "-kubeconfig=/etc/headlamp/kubeconfig"
+      enableHelm: true
+    volumes:
+      - name: kubeconfig
+        configMap:
+          name: headlamp-kubeconfig
+    volumeMounts:
+      - name: kubeconfig
+        mountPath: /etc/headlamp/kubeconfig
+        subPath: kubeconfig
+        readOnly: true
+    serviceAccount:
+      create: true
+      name: headlamp-sa
+    extraManifests:
+      - |
+        apiVersion: v1
+        kind: ConfigMap
+        metadata:
+          name: headlamp-kubeconfig
+        data:
+          kubeconfig: |
+            apiVersion: v1
+            kind: Config
+            clusters:
+            - cluster:
+                certificate-authority: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+                server: https://kubernetes.default.svc
+              name: in-cluster
+            contexts:
+            - context:
+                cluster: in-cluster
+                user: headlamp-sa
+              name: in-cluster
+            current-context: in-cluster
+            users:
+            - name: headlamp-sa
+              user:
+                tokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
+kind: ConfigMap
+metadata:
+  labels:
+    reconcile.fluxcd.io/watch: Enabled
+  name: headlamp-values
+  namespace: flux-system
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: headlamp
+  namespace: flux-system
+spec:
+  chart:
+    spec:
+      chart: headlamp
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: headlamp
+        namespace: flux-system
+      version: 0.42.0
+  install:
+    createNamespace: true
+  interval: 1m0s
+  releaseName: headlamp
+  storageNamespace: kube-system
+  targetNamespace: kube-system
+  valuesFrom:
+  - kind: ConfigMap
+    name: headlamp-values
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: headlamp
+  namespace: flux-system
+spec:
+  interval: 1m0s
+  url: https://kubernetes-sigs.github.io/headlamp
