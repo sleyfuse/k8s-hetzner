@@ -73,7 +73,7 @@ spec:
 #
 # Auth Middleware
 #
-apiVersion: traefik.containo.us/v1alpha1
+apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
   name: traefik-forward-auth
@@ -103,6 +103,6 @@ metadata:
     app: traefik-forward-auth
 type: Opaque
 data:
-  traefik-forward-auth-google-client-id: "YW5nbGV0aGFua3VudGlsYmVzdGNhbGx0b3doZXRoZXJoaWdod2F5YXZvaWRhaGVhZHM="
-  traefik-forward-auth-google-client-secret: "bW9vbndhbGtmYW1pbGlhcndpdGhvdXRoYWR0cnV0aG1hZ2ljdGhlcmVzZWFob25vcnI"
-  traefik-forward-auth-secret: "YnV5dmFwb3JxdWlja2x5c2xvcGVmb3JjZWdpdmluZ2NlbGx3aGlzdGxlZGF3bmdyZWE"
+  traefik-forward-auth-google-client-id: "eLp4mrWrRSgWle_tLl_3Xg"
+  traefik-forward-auth-google-client-secret: "5ZOtxer-vDX1HEBJ3xiW5Q"
+  traefik-forward-auth-secret: "tWTbOhjwagyLhcZYv5lA-g"
