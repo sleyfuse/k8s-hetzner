@@ -1,4 +1,5 @@
 configMap:
+  theme: dark
   session:
     cookies: [{ domain: 127.0.0.1 }]
   storage:
@@ -30,13 +31,20 @@ configMap:
           revocation_endpoint_auth_method: none
           introspection_endpoint_auth_method: none
           pushed_authorization_request_endpoint_auth_method: none
-  cors:
-    endpoints: [userinfo, authorization, token, revocation, introspection]
-    allowed_origins_from_client_redirect_uris: true
-  claims_policies:
-    legacy:
-      id_token:
-        [email, email_verified, alt_emails, name, preferred_username, groups]
+      cors:
+        endpoints: [userinfo, authorization, token, revocation, introspection]
+        allowed_origins_from_client_redirect_uris: true
+      claims_policies:
+        legacy:
+          id_token:
+            [
+              email,
+              email_verified,
+              alt_emails,
+              name,
+              preferred_username,
+              groups,
+            ]
 secret:
   existingSecret: crypto
   additionalSecrets:
