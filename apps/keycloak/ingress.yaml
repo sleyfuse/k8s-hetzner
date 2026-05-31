@@ -15,8 +15,7 @@ spec:
         - kind: Service
           name: example-kc-service
           namespace: keycloak
-          port: 8080
-          scheme: http
+          port: 9000
   ingressClassName: traefik
   tls:
     secretName: alixroden-co-uk-tls
