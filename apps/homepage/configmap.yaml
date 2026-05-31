@@ -14,21 +14,22 @@ data:
   custom.js: ""
   bookmarks.yaml: ""
   services.yaml: |
-    - ControlPlane:
-        icon: kubernetes.png
-        description: "Kubernetes Control Plane"
-        proxmoxNode: pve
-        proxmoxVMID: 100
-    - Worker1:
-        icon: kubernetes.png
-        description: "Kubernetes Worker Node 1"
-        proxmoxNode: pve
-        proxmoxVMID: 101
-    - Worker2:
-        icon: kubernetes.png
-        description: "Kubernetes Worker Node 2"
-        proxmoxNode: pve
-        proxmoxVMID: 102
+    - Proxmox:
+      - ControlPlane:
+          icon: kubernetes.png
+          description: "Kubernetes Control Plane"
+          proxmoxNode: pve
+          proxmoxVMID: 100
+      - Worker1:
+          icon: kubernetes.png
+          description: "Kubernetes Worker Node 1"
+          proxmoxNode: pve
+          proxmoxVMID: 101
+      - Worker2:
+          icon: kubernetes.png
+          description: "Kubernetes Worker Node 2"
+          proxmoxNode: pve
+          proxmoxVMID: 102
   proxmox.yaml: |
     pve:
       url: "https://alixroden.co.uk:8006"
