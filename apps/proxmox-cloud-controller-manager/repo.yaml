@@ -8,7 +8,5 @@ spec:
   interval: 1m0s
   type: oci
   url: oci://ghcr.io/sergelogvinov/charts/proxmox-cloud-controller-manager
-  ref:
-    tag: latest
   secretRef:
     name: ghcr-auth
