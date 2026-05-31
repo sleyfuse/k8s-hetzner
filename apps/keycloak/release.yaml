@@ -11,7 +11,7 @@ spec:
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
-        name: bitnami_charts
+        name: bitnamicharts
         namespace: flux-system
       version: "25.2.0"
   valuesFrom:

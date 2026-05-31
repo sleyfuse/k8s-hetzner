@@ -2,7 +2,7 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
-  name: bitnami_charts
+  name: bitnamicharts
   namespace: flux-system
 spec:
   interval: 1h
