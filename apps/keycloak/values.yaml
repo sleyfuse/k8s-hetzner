@@ -1,7 +1,0 @@
-image:
-  registry: docker.io
-  repository: bitnamilegacy/keycloak
-postgresql:
-  image:
-    registry: docker.io
-    repository: bitnamilegacy/postgresql
