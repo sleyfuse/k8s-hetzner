@@ -43,6 +43,8 @@ spec:
             - name: http
               containerPort: 4181
           env:
+            - name: DOMAIN
+              value: "alixroden.co.uk"
             - name: PROVIDERS_OIDC_CLIENT_SECRET
               valueFrom:
                 secretKeyRef:
