@@ -8,7 +8,14 @@ data:
       - name: headlamp-kubeconfig
         configMap:
           name: headlamp-kubeconfig
+      - name: kubeconfig
+        configMap:
+          name: headlamp-kubeconfig
     volumeMounts:
+      - name: kubeconfig
+        mountPath: /home/headlamp/.kube/confi
+        readOnly: true
+        subPath: kubeconfig
       - name: headlamp-kubeconfig
         mountPath: /home/headlamp/.config/Headlamp/kubeconfigs/config
         readOnly: true
