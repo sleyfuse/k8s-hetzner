@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: profilarr
+  namespace: media
+spec:
+  selector:
+    matchLabels:
+      app: profilarr
+  template:
+    metadata:
+      labels:
+        app: profilarr
+      namespace: media
+    spec:
+      containers:
+        - name: profilarr
+          securityContext:
+            privileged: true
+          image: linuxserver/profilarr
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9696
+          env:
+            - name: PGID
+              value: "1000"
+            - name: PUID
+              value: "1000"
+          volumeMounts:
+            - name: profilarr-config
+              mountPath: /config
+      volumes:
+        - name: profilarr-config
+          persistentVolumeClaim:
+            claimName: profilarr-config-pvc
