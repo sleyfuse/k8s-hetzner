@@ -13,7 +13,7 @@ data:
           name: headlamp-kubeconfig
     volumeMounts:
       - name: kubeconfig
-        mountPath: /home/headlamp/.kube/confi
+        mountPath: /home/headlamp/.kube/config
         readOnly: true
         subPath: kubeconfig
       - name: headlamp-kubeconfig
