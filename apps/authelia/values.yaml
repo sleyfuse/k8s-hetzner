@@ -6,4 +6,6 @@ configMap:
   notifier:
     filesystem: { enabled: true }
   authentication_backend:
-    file: { enabled: true }
+    file: { enabled: true, path: /config/users.yaml }
+secret:
+  existingSecret: crypto
