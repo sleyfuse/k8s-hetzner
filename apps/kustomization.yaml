@@ -7,3 +7,4 @@ resources:
   - cert-manager-webhook-hetzner
   - headlamp
   - proxmox-cloud-controller-manager
+  - proxmox-csi-plugin
