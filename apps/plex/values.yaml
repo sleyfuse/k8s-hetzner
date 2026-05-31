@@ -9,8 +9,6 @@ pms:
       nextflow.io/fuse: "1"
   securityContext:
     privileged: true
-extraEnv:
-  PLEX_CLAIM: "claim-CNc19oQfrQXy98s9hnwF"
 extraInitContainers:
   - name: init-sysctl
     image: busybox:latest
@@ -55,3 +53,7 @@ extraVolumeMounts:
   - name: mediamount
     mountPath: /mnt
     mountPropagation: HostToContainer
+extraEnv:
+  PLEX_UID: "1000"
+  PLEX_GID: "1000"
+  PLEX_CLAIM: "claim-CNc19oQfrQXy98s9hnwF"
