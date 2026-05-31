@@ -17,6 +17,10 @@ data:
         mountPath: /etc/headlamp/kubeconfig
         subPath: kubeconfig
         readOnly: true
+      - name: kubeconfig
+        mountPath: /home/headlamp/.config/Headlamp/kubeconfigs/config
+        subPath: kubeconfig
+        readOnly: true
     serviceAccount:
       create: true
       name: headlamp-sa
@@ -83,8 +87,8 @@ spec:
     disableTakeOwnership: false
     force: true
   valuesFrom:
-  - kind: ConfigMap
-    name: headlamp-values
+    - kind: ConfigMap
+      name: headlamp-values
 ---
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
