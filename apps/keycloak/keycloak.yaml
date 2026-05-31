@@ -6,7 +6,6 @@ metadata:
 spec:
   admin:
     tlsSecret: alixroden-co-uk-tls
-  startOptimized: true
 
   db:
     host: postgres-db.keycloak.svc.cluster.local
@@ -26,7 +25,7 @@ spec:
   hostname:
     hostname: https://keycloak.alixroden.co.uk
     strict: false
-    backChannelDynamic: true
+    backchannelDynamic: false
   http:
     httpEnabled: true
     tlsSecret: alixroden-co-uk-tls
