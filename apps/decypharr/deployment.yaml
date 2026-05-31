@@ -27,8 +27,12 @@ spec:
               protocol: TCP
           volumeMounts:
             - mountPath: /mnt
-              name: media_mount
+              name: mediamount
               mountPropagation: Bidirectional
+          volumes:
+            - name: mediamount
+              persistentVolumeClaim:
+                claimName: media-pvc
           securityContext:
             privileged: true
       resources:
@@ -37,7 +41,3 @@ spec:
         limits:
           nextflow.io/fuse: "1"
       terminationGracePeriodSeconds: 0
-      volumes:
-        - name: media_mount
-          persistentVolumeClaim:
-            claimName: media-pvc
