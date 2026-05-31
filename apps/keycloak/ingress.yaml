@@ -9,13 +9,19 @@ spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`keycloak.alixroden.co.uk`)
+    - match: Host(`keycloak.alixroden.co.uk`) && PathPrefix(`/admin`)
       kind: Rule
       services:
         - kind: Service
           name: example-kc-service
           namespace: keycloak
           port: 9000
-  ingressClassName: traefik
+    - match: Host(`keycloak.alixroden.co.uk`)
+      kind: Rule
+      services:
+        - kind: Service
+          name: example-kc-service
+          namespace: keycloak
+          port: 8080
   tls:
     secretName: alixroden-co-uk-tls
