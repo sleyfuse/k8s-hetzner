@@ -4,7 +4,6 @@ keycloak:
   username: "admin"
   password: "KXX14cdup$"
   proxyHeaders: "xforwarded"
-  httpEnabled: false
 persistence:
   enabled: true
   storageClass: proxmox-data-xfs
