@@ -1,0 +1,54 @@
+apiVersion: k8s.keycloak.org/v2beta1
+kind: Keycloak
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"k8s.keycloak.org/v2beta1","kind":"Keycloak","metadata":{"annotations":{},"name":"example-kc","namespace":"keycloak"},"spec":{"db":{"host":"postgres-db","passwordSecret":{"key":"password","name":"keycloak-db-secret"},"usernameSecret":{"key":"username","name":"keycloak-db-secret"},"vendor":"postgres"},"hostname":{"hostname":"keycloak.alixroden.co.uk"},"http":{"tlsSecret":"alixroden-co-uk-tls"},"instances":1,"proxy":{"headers":"xforwarded"}}}
+  creationTimestamp: "2026-05-31T07:08:45Z"
+  generation: 1
+  name: example-kc
+  namespace: keycloak
+  resourceVersion: "471194"
+  uid: 6b4e6d06-f315-46cf-864b-56399fa24de8
+spec:
+  db:
+    host: postgres-db
+    passwordSecret:
+      key: password
+      name: keycloak-db-secret
+    usernameSecret:
+      key: username
+      name: keycloak-db-secret
+    vendor: postgres
+  hostname:
+    hostname: keycloak.alixroden.co.uk
+  http:
+    tlsSecret: alixroden-co-uk-tls
+  instances: 1
+  proxy:
+    headers: xforwarded
+status:
+  conditions:
+  - lastTransitionTime: "2026-05-31T07:08:46.797523233Z"
+    message: Waiting for more replicas
+    observedGeneration: 1
+    status: "False"
+    type: Ready
+  - lastTransitionTime: "2026-05-31T07:16:41.296749785Z"
+    message: |-
+      warning: The following Secrets are missing: alixroden-co-uk-tls
+      warning: A ServiceMonitor will not be created because `metrics-enabled` is not true.
+    observedGeneration: 1
+    status: "False"
+    type: HasErrors
+  - lastTransitionTime: "2026-05-31T07:13:52.261833453Z"
+    message: Rolling out deployment update
+    observedGeneration: 1
+    status: "True"
+    type: RollingUpdate
+  - lastTransitionTime: "2026-05-31T07:08:45.707068296Z"
+    observedGeneration: 1
+    status: Unknown
+    type: RecreateUpdateUsed
+  observedGeneration: 1
+  selector: app=keycloak,app.kubernetes.io/managed-by=keycloak-operator,app.kubernetes.io/instance=example-kc
