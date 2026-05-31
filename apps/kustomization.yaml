@@ -25,3 +25,5 @@ resources:
   - prowlarr
   - profilarr
   - byparr
+  - pgsql
+  - zilean

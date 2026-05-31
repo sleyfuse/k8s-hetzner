@@ -1,0 +1,11 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Database
+metadata:
+  name: zilean-db
+  namespace: media
+spec:
+  name: zilean
+  owner: app
+  cluster:
+    name: postgresql
+    namespace: infra

@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zilean
+spec:
+  selector:
+    matchLabels:
+      app: zilean
+  template:
+    metadata:
+      labels:
+        app: zilean
+    spec:
+      containers:
+        - name: zilean
+          image: ipromknight/zilean
+          ports:
+            - containerPort: 8181
+          env:
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: zilean-db-credentials
+                  key: password
