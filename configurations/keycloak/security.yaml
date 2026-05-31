@@ -16,3 +16,5 @@ spec:
       name: keycloak-client-secret
     redirectURL: "https://headlamp.alixroden.co.uk/oauth2/callback"
     logoutPath: "/headlamp/logout"
+  authorization:
+    defaultAction: Deny
