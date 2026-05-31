@@ -4,7 +4,6 @@ config:
   inCluster: false
   extraArgs:
     - "-kubeconfig=/etc/headlamp/kubeconfig"
-    - "-proxy-auth=true"
   inClusterContextName: in-cluster
 volumes:
   - name: kubeconfig

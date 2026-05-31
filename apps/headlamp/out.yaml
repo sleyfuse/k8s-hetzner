@@ -7,7 +7,7 @@ data:
       inCluster: false
       extraArgs:
         - "-kubeconfig=/etc/headlamp/kubeconfig"
-      enableHelm: true
+      inClusterContextName: in-cluster
     volumes:
       - name: kubeconfig
         configMap:
@@ -20,6 +20,9 @@ data:
     serviceAccount:
       create: true
       name: headlamp-sa
+    persistentVolumeClaim:
+      enabled: true
+      size: 1Gi
     extraManifests:
       - |
         apiVersion: v1
