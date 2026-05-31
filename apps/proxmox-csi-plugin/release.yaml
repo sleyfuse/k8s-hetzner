@@ -13,7 +13,7 @@ spec:
         kind: HelmRepository
         name: proxmox-csi-plugin
         namespace: flux-system
-      version: "0.2.28"
+      version: "0.18.1"
   valuesFrom:
     - kind: ConfigMap
       name: proxmox-csi-plugin-values
