@@ -4,7 +4,7 @@ metadata:
   name: web
   namespace: infra
 spec:
-  gatewayClassName: cilium
+  gatewayClassName: envoygateway
   listeners:
     - allowedRoutes:
         namespaces:
