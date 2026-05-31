@@ -5,7 +5,6 @@ metadata:
   namespace: kube-system
   annotations:
     external-dns.alpha.kubernetes.io/target: traefik.alixroden.co.uk
-    kubernetes.io/ingress.class: traefik
 spec:
   entryPoints:
     - websecure
@@ -19,5 +18,6 @@ spec:
       middlewares:
         - name: traefik-forward-auth
           namespace: traefik
+  ingressClassName: traefik
   tls:
     secretName: alixroden-co-uk-tls

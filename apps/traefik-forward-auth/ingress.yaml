@@ -9,7 +9,7 @@ spec:
     - websecure
   routes:
     - kind: Rule
-      match: Host(`tfa.mydomain.io`)
+      match: Host(`tfa.alixroden.co.uk`)
       services:
         - name: traefik-forward-auth
           port: 80
