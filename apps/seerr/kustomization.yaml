@@ -4,15 +4,4 @@ kind: Kustomization
 resources:
   - repo.yaml
   - release.yaml
-configMapGenerator:
-  - name: seerr-values
-    namespace: flux-system
-    files:
-      - values.yaml
-    options:
-      labels:
-        reconcile.fluxcd.io/watch: "Enabled"
-configurations:
-  - kustomizeconfig.yaml
-generatorOptions:
-  disableNameSuffixHash: true
+  - ingress.yaml

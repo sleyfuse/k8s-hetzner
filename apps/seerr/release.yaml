@@ -2,24 +2,24 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: proxmox-csi-plugin
+  name: seerr
   namespace: flux-system
 spec:
   chart:
     spec:
-      chart: proxmox-csi-plugin
+      chart: seerr
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
-        name: proxmox-csi-plugin
+        name: seerr
         namespace: flux-system
       version: "0.5.7"
   valuesFrom:
     - kind: ConfigMap
-      name: proxmox-csi-plugin-values
+      name: seerr-values
   install:
     createNamespace: true
   interval: 1m0s
-  releaseName: proxmox-csi-plugin
-  storageNamespace: kube-system
-  targetNamespace: kube-system
+  releaseName: seerr
+  storageNamespace: media
+  targetNamespace: media
