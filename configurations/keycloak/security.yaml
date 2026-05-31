@@ -1,0 +1,25 @@
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: SecurityPolicy
+metadata:
+  name: keycloak
+  namespace: keycloak
+spec:
+  targetSelectors:
+    - kind: HTTPRoute
+      matchLabels:
+        security: required
+  oidc:
+    provider:
+      backendRefs:
+        - kind: Service
+          name: keycloak
+          namespace: keycloak
+          port: 8080
+      issuer: "http://auth.alixroden.co.uk/realms/master"
+      authorizationEndpoint: "http://auth.alixroden.co.uk/realms/master/protocol/openid-connect/auth"
+      tokenEndpoint: "http://auth.alixroden.co.uk/realms/master/protocol/openid-connect/token"
+    clientID: "${CLIENT_ID}"
+    clientSecret:
+      name: keycloak-client-secret
+    logoutPath: "/"
+    redirectURL: "https://auth.alixroden.co.uk/realms/master/broker/oidc/endpoint"
