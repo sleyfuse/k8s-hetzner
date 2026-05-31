@@ -68,6 +68,11 @@ pod:
   extraVolumes:
     - name: users
       secret: { secretName: users }
+
 postgresql:
   auth:
     existingSecret: db-creds
+  primary:
+    persistence:
+      enabled: true
+      size: 1Gi
