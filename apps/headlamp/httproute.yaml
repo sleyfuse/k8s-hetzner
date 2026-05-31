@@ -10,7 +10,8 @@ metadata:
     gethomepage.dev/icon: headlamp.png
     gethomepage.dev/widget.url: "https://headlamp.alixroden.co.uk"
     gethomepage.dev/pod-selector: ""
-    gethomepage.dev/descripton: "Headlamp Kubernetes Dashboard"
+    gethomepage.dev/widget-type: "service"
+    gethomepage.dev/description: "Headlamp Kubernetes Dashboard"
 spec:
   parentRefs:
     - group: gateway.networking.k8s.io
