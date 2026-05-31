@@ -17,9 +17,8 @@ spec:
       key: username
       name: keycloak-db-secret
     vendor: postgres
-  hostname:
-    strict: false
-    backchannelDynamic: true
+  ingress:
+    enabled: false
   http:
     httpEnabled: false
   instances: 1
