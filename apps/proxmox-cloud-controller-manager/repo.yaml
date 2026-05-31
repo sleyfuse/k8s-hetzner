@@ -7,6 +7,6 @@ metadata:
 spec:
   interval: 1m0s
   type: oci
-  url: oci://ghcr.io/sergelogvinov/charts/proxmox-cloud-controller-manager
+  url: oci://ghcr.io/sergelogvinov/charts
   secretRef:
     name: ghcr-auth
