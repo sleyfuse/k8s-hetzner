@@ -45,10 +45,6 @@ spec:
           env:
             - name: CONFIG
               value: "/config"
-            - name: SECRET
-              value: "VFY0SFhlRDhFQm1HTTdPbHJzOFFLTDdDc0VNTVpudFo="
-            - name: AUTH_HOST
-              value: "tfa.alixroden.co.uk"
           volumeMounts:
             - name: config
               mountPath: /config

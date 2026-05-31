@@ -11,3 +11,5 @@ data:
     providers.oidc.client-secret=ntta77UrmyyEOq8Gf
     default-provider=oidc
     cookie-domain=alixroden.co.uk
+    secret=9ff492c59c066f53b12e751b89987f51
+    auth-host=tfa.alixroden.co.uk
