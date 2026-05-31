@@ -13,6 +13,8 @@ spec:
         app: radarr
       namespace: media
     spec:
+      nodeSelector:
+        kubernetes.io/hostname: worker1
       containers:
         - name: radarr
           securityContext:

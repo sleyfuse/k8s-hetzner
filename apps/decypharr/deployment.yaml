@@ -17,6 +17,8 @@ spec:
         app: decypharr
       namespace: media
     spec:
+      nodeSelector:
+        kubernetes.io/hostname: worker1
       containers:
         - image: cy01/blackhole:latest
           imagePullPolicy: IfNotPresent

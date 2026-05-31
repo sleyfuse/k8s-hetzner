@@ -13,6 +13,8 @@ spec:
         app: sonarr
       namespace: media
     spec:
+      nodeSelector:
+        kubernetes.io/hostname: worker1
       containers:
         - name: sonarr
           securityContext:
