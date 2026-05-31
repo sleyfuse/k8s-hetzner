@@ -4,6 +4,7 @@ keycloak:
   username: "admin"
   password: "KXX14cdup$"
   proxyHeaders: "xforwarded"
+  httpEnabled: false
 persistence:
   enabled: true
   storageClass: proxmox-data-xfs
@@ -16,3 +17,17 @@ resources:
   limits:
     memory: "2Gi"
     cpu: "1000m"
+database:
+  jdbcParams: "?prepStmtCacheSize=250&prepStmtCacheSqlLimit=2048"
+tls:
+  enabled: true
+  certManager:
+    enabled: true
+    issuerRef:
+      name: "letsencrypt"
+      kind: ClusterIssuer
+      namespace: cert-manager
+    dnsNames:
+      - auth.alixroden.co.uk
+extraEnv:
+  JAVA_OPTS: "-Xms1024m -Xmx2048m -XX:MetaspaceSize=256m -XX:MaxMetaspaceSize=512m"
