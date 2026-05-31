@@ -1,6 +1,6 @@
 config:
   clusters:
-    - url: https://192.168.1.1:8006/api2/json
+    - url: https://alixroden.co.uk:8006/api2/json
       insecure: false
       token_id: "kubernetes@pve!ccm"
       token_secret: "a95c3d2e-5ca9-4437-ab81-62ba20ca8b89 "
