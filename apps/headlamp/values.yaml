@@ -1,27 +1,17 @@
-pluginManager:
-  enabled: true
 config:
   inCluster: false
   extraArgs:
     - "-kubeconfig=/etc/headlamp/kubeconfig"
-  inClusterContextName: in-cluster
 volumes:
   - name: kubeconfig
     configMap:
       name: headlamp-kubeconfig
+      namespace: kube-system
 volumeMounts:
   - name: kubeconfig
     mountPath: /etc/headlamp/kubeconfig
     subPath: kubeconfig
     readOnly: true
-serviceAccount:
-  create: true
-  name: headlamp-sa
-persistentVolumeClaim:
-  enabled: true
-  size: 1Gi
-  accessModes:
-    - ReadWriteOnce
 extraManifests:
   - |
     apiVersion: v1
