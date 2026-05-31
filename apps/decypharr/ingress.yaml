@@ -1,0 +1,20 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: decypharr
+  namespace: media
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`decypharr.alixroden.com`)
+      kind: Rule
+      services:
+        - name: decypharr
+          port: 8282
+      middlewares:
+        - name: forward-auth
+          namespace: traefik-forward-auth
+  ingressClassName: traefik
+  tls:
+    secretName: alixroden-co-uk-tls
