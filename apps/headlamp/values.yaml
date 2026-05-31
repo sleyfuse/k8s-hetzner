@@ -2,3 +2,6 @@ pluginManager:
   enabled: true
 config:
   enableHelm: true
+serviceAccount:
+  create: true
+  name: headlamp-admin
