@@ -6,6 +6,7 @@ metadata:
 spec:
   selector:
     app: traefik-forward-auth
+  type: LoadBalancer
   ports:
     - name: http
       port: 80
@@ -32,23 +33,35 @@ spec:
       containers:
         - name: traefik-forward-auth
           image: thomseddon/traefik-forward-auth:2
-          imagePullPolicy: Always
-          livenessProbe:
-            failureThreshold: 3
-            tcpSocket:
-              port: 4181
-            initialDelaySeconds: 10
-            periodSeconds: 10
-          ports:
-            - name: http
-              containerPort: 4181
           env:
-            - name: CONFIG
-              value: "/config"
+            - name: DEFAULT_PROVIDER
+              value: oidc
+            - name: PROVIDERS_OIDC_ISSUER_URL
+              value: https://keycloak.alixroden.co.uk/realms/master
+            - name: PROVIDERS_OIDC_CLIENT_ID
+              value: traefik-forward-auth
+            - name: PROVIDERS_OIDC_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: traefik-forward-auth
+                  key: PROVIDERS_OIDC_CLIENT_SECRET
+            - name: SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: traefik-forward-auth
+                  key: SECRET
+            - name: INSECURE_COOKIE
+              value: "true"
+            - name: LOG_LEVEL
+              value: debug
+          ports:
+            - containerPort: 4181
+              name: http
+              protocol: TCP
           volumeMounts:
             - name: config
               mountPath: /config
-              subPath: traefik-forward-auth.ini
+              readOnly: true
       volumes:
         - name: config
           configMap:
