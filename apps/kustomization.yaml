@@ -6,3 +6,4 @@ resources:
   - external-dns
   - cert-manager-webhook-hetzner
   - headlamp
+  - proxmox-cloud-controller-manager
