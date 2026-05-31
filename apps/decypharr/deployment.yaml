@@ -29,6 +29,8 @@ spec:
             - mountPath: /mnt
               name: mediamount
               mountPropagation: Bidirectional
+            - mountPath: /app
+              name: config
           securityContext:
             privileged: true
           resources:
@@ -43,5 +45,4 @@ spec:
         - name: config
           persistentVolumeClaim:
             claimName: config-pvc
-
       terminationGracePeriodSeconds: 0
