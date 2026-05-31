@@ -27,7 +27,7 @@ spec:
             - name: PUID
               value: "1000"
             - name: ORIGIN
-              value: "https://profilarr.alixroden.co.uk"
+              value: "http://profilarr.alixroden.co.uk"
           volumeMounts:
             - name: profilarr-config
               mountPath: /config
