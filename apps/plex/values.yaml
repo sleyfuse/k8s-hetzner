@@ -4,7 +4,9 @@ extraEnv:
   PLEX_CLAIM: "claim-CNc19oQfrQXy98s9hnwF"
 resources:
   requests:
-    gpu.intel.com/xe: 1
+    gpu.intel.com/xe: "1"
+  limits:
+    gpu.intel.com/xe: "1"
 extraInitContainers:
   - name: init-sysctl
     image: busybox:latest
