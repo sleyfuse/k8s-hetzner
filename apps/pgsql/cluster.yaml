@@ -8,4 +8,3 @@ spec:
     shm: 1Gi
   storage:
     size: 10Gi
-  dynamic_shared_memory_type: "sysv"
