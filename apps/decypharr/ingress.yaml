@@ -14,6 +14,8 @@ spec:
       services:
         - name: decypharr
           port: 8282
+          namespace: media
+          scheme: http
       middlewares:
         - name: forward-auth
           namespace: traefik-forward-auth
