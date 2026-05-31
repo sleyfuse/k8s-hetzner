@@ -9,3 +9,8 @@ persistence:
   storageClass: proxmox-data-xfs
   accessMode: ReadWriteOnce
   size: 10Gi
+postgres:
+  enabled: true
+  auth:
+    database: "keycloak"
+    password: "keycloak-db-password"
