@@ -20,7 +20,7 @@ spec:
   ingress:
     enabled: false
   http:
-    httpEnabled: false
+    httpEnabled: true
   instances: 1
   proxy:
     headers: xforwarded
