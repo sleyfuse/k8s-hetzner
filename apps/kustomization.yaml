@@ -16,7 +16,7 @@ resources:
   - traefik-forward-auth
   - keycloak
   - kubernetes-reflector
-  - plex
   - fuse-device-plugin
+  - plex
   - decypharr
   - local-path-provisioner
