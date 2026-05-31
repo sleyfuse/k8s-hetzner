@@ -19,6 +19,10 @@ spec:
     metadata:
       labels:
         app: traefik-forward-auth
+        traefik.port: "4181"
+        traefik.frontend.rule: Host(`autha.alixroden.co.uk`)
+        traefik.frontend.auth.forward.address: http://traefik-forward-auth:4181
+        traefik.frontend.auth.forward.trustForwardHeader: "true"
     spec:
       terminationGracePeriodSeconds: 60
       containers:
@@ -29,7 +33,7 @@ spec:
               protocol: TCP
           env:
             - name: AUTH_HOST
-              value: "auth.alixroden.co.uk"
+              value: "autha.alixroden.co.uk"
             - name: COOKIE_DOMAIN
               value: "alixroden.co.uk"
             - name: OIDC_ISSUER
