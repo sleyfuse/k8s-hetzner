@@ -5,8 +5,3 @@ config:
 serviceAccount:
   create: true
   name: headlamp-admin
-oidc:
-  clientID: "headlamp"
-  clientSecret: "igUWHbPpc4YaG6QukeLfCNplqmnjjT4B"
-  issuerURL: "http://auth.alixroden.co.uk/realms/master"
-  scopes: "email,profile"
