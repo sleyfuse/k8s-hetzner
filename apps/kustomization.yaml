@@ -21,3 +21,4 @@ resources:
   - decypharr
   - local-path-provisioner
   - sonarr
+  - radarr

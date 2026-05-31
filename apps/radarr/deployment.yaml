@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: radarr
+  namespace: media
+spec:
+  selector:
+    matchLabels:
+      app: radarr
+  template:
+    metadata:
+      labels:
+        app: radarr
+      namespace: media
+    spec:
+      containers:
+        - name: radarr
+          securityContext:
+            privileged: true
+          image: linuxserver/radarr
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 7878
+          env:
+            - name: PGID
+              value: "1000"
+            - name: PUID
+              value: "1000"
+          volumeMounts:
+            - name: radarr-config
+              mountPath: /config
+            - name: mediamount
+              mountPath: /mnt
+              mountPropagation: Bidirectional
+          resources:
+            requests:
+              nextflow.io/fuse: "1"
+            limits:
+              nextflow.io/fuse: "1"
+      volumes:
+        - name: mediamount
+          persistentVolumeClaim:
+            claimName: media-pvc
+        - name: radarr-config
+          persistentVolumeClaim:
+            claimName: radarr-config-pvc
