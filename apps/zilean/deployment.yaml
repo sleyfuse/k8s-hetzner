@@ -38,5 +38,5 @@ spec:
             claimName: zilean-data-pvc
         - name: zilean-tmp
           emptyDir:
-            sizeLimit: "1Gi"
-            medium: Memory
+            sizeLimit: "3Gi"
+            medium: "Filesystem"
