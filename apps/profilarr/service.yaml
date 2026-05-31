@@ -9,6 +9,6 @@ spec:
   selector:
     app: profilarr
   ports:
-    - port: 9696
-      targetPort: 9696
+    - port: 6868
+      targetPort: 6868
       name: http

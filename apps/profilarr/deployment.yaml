@@ -15,17 +15,17 @@ spec:
     spec:
       containers:
         - name: profilarr
-          securityContext:
-            privileged: true
-          image: linuxserver/profilarr
+          image: ghcr.io/dictionarry-hub/profilarr:latest
           imagePullPolicy: Always
           ports:
-            - containerPort: 9696
+            - containerPort: 6868
           env:
             - name: PGID
               value: "1000"
             - name: PUID
               value: "1000"
+            - name: ORIGIN
+              value: "http://profilarr.alixroden.co.uk"
           volumeMounts:
             - name: profilarr-config
               mountPath: /config

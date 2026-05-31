@@ -13,7 +13,7 @@ spec:
       kind: Rule
       services:
         - name: profilarr
-          port: 9696
+          port: 6868
           namespace: media
           scheme: http
       middlewares:
