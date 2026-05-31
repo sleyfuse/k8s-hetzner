@@ -20,6 +20,8 @@ serviceAccount:
 persistentVolumeClaim:
   enabled: true
   size: 1Gi
+  accessModes:
+    - ReadWriteOnce
 extraManifests:
   - |
     apiVersion: v1

@@ -23,6 +23,8 @@ data:
     persistentVolumeClaim:
       enabled: true
       size: 1Gi
+      accessModes:
+        - ReadWriteOnce
     extraManifests:
       - |
         apiVersion: v1
@@ -77,6 +79,9 @@ spec:
   releaseName: headlamp
   storageNamespace: kube-system
   targetNamespace: kube-system
+  upgrade:
+    disableTakeOwnership: false
+    force: true
   valuesFrom:
   - kind: ConfigMap
     name: headlamp-values

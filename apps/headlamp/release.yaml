@@ -19,6 +19,9 @@ spec:
       name: headlamp-values
   install:
     createNamespace: true
+  upgrade:
+    disableTakeOwnership: false
+    force: true
   interval: 1m0s
   releaseName: headlamp
   storageNamespace: kube-system
