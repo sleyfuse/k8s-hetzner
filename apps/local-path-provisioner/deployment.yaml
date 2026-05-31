@@ -130,10 +130,11 @@ metadata:
 data:
   config.json: |-
     {
+            "sharedFileSystemPath": "/opt/media-share",
             "nodePathMap":[
             {
                     "node":"DEFAULT_PATH_FOR_NON_LISTED_NODES",
-                    "paths":["/opt/local-path-provisioner"]
+                    "paths":["/opt/local-path-provisioner"],
             }
             ]
     }
