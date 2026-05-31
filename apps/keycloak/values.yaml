@@ -2,7 +2,6 @@ keycloak:
   hostname: "https://auth.alixroden.co.uk"
   hostnameAdmin: "https://auth.alixroden.co.uk"
   username: "admin"
-  password: "KXX14cdup$"
   proxyHeaders: "xforwarded"
 persistence:
   enabled: true
