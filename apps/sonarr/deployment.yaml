@@ -29,7 +29,7 @@ spec:
           volumeMounts:
             - name: sonarr-config
               mountPath: /config
-            - name: mediamnt
+            - name: mediamount
               mountPath: /mnt
               mountPropagation: Bidirectional
           resources:
