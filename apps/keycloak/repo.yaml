@@ -2,8 +2,8 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
-  name: helmforge
+  name: bitnami
   namespace: flux-system
 spec:
   interval: 1h
-  url: https://repo.helmforge.dev
+  url: https://charts.bitnami.com/bitnami
