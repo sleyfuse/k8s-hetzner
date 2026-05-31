@@ -5,6 +5,11 @@ metadata:
   namespace: infra
 spec:
   gatewayClassName: envoygateway
+  infrastructure:
+    parametersRef:
+      group: gateway.envoyproxy.io
+      kind: EnvoyProxy
+      name: custom-proxy-config
   listeners:
     - allowedRoutes:
         namespaces:
