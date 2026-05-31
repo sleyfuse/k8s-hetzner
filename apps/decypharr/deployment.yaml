@@ -31,13 +31,13 @@ spec:
               mountPropagation: Bidirectional
           securityContext:
             privileged: true
+          resources:
+            requests:
+              nextflow.io/fuse: "1"
+            limits:
+              nextflow.io/fuse: "1"
       volumes:
         - name: mediamount
           persistentVolumeClaim:
             claimName: media-pvc
-      resources:
-        requests:
-          nextflow.io/fuse: "1"
-        limits:
-          nextflow.io/fuse: "1"
       terminationGracePeriodSeconds: 0
