@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: decypharr
+  name: decypharr
+  namespace: media
+spec:
+  replicas: 1
+  revisionHistoryLimit: 1
+  selector:
+    matchLabels:
+      app: decypharr
+  template:
+    metadata:
+      labels:
+        app: decypharr
+      namespace: media
+    spec:
+      containers:
+        - image: cy01/blackhole:latest
+          imagePullPolicy: IfNotPresent
+          name: decypharr
+          ports:
+            - containerPort: 8282
+              name: http
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /mnt
+              name: media_mount
+              mountPropagation: Bidirectional
+      resources:
+        limits:
+          nextflow.io/fuse: "1"
+      terminationGracePeriodSeconds: 0
+      volumes:
+        - name: media_mount
+          hostPath:
+            path: /k8s-media
+            type: DirectoryOrCreate

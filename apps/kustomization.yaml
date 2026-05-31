@@ -17,3 +17,5 @@ resources:
   - keycloak
   - kubernetes-reflector
   - plex
+  - fuse-device-plugin
+  - decypharr
