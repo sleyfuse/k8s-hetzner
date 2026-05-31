@@ -5,10 +5,10 @@ metadata:
   namespace: keycloak
 spec:
   db:
-    host: postgresql-db
+    host: postgres-db.keycloak.svc.cluster.local
     port: 5432
     database: keycloak
-    url: jdbc:postgresql://postgresql-db:5432/keycloak
+    url: jdbc:postgresql://postgres-db.keycloak.svc.cluster.local:5432/keycloak
     schema: public
     passwordSecret:
       key: password
