@@ -17,4 +17,4 @@ spec:
   rules:
     - backendRefs:
         - name: keycloak
-          port: 7800
+          port: 8080
