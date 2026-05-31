@@ -4,7 +4,6 @@ kind: Kustomization
 resources:
   - repo.yaml
   - release.yaml
-  - ghcr.yaml
 configMapGenerator:
   - name: proxmox-csi-plugin-values
     namespace: flux-system
