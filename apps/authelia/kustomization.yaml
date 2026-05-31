@@ -4,6 +4,9 @@ kind: Kustomization
 resources:
   - repo.yaml
   - release.yaml
+  - namespace.yaml
+  - httproute.yml
+  - secret.yaml
 configMapGenerator:
   - name: authelia-values
     namespace: flux-system
