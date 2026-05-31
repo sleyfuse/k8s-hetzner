@@ -21,30 +21,27 @@ data:
           proxmoxNode: pve
           proxmoxVMID: 100
           widget:
-            type: proxmox
-            url: "https://alixroden.co.uk:8006"
-            password: "a95c3d2e-5ca9-4437-ab81-62ba20ca8b89"
-            username: "kubernetes@pve!ccm"
+            type: glances
+            url: http://192.168.1.100:61208
+            metric: info
       - Worker1:
           icon: kubernetes.png
           description: "Kubernetes Worker Node 1"
           proxmoxNode: pve
           proxmoxVMID: 101
           widget:
-            type: proxmox
-            url: "https://alixroden.co.uk:8006"
-            password: "a95c3d2e-5ca9-4437-ab81-62ba20ca8b89"
-            username: "kubernetes@pve!ccm"
+            type: glances
+            url: http://192.168.1.101:61208
+            metric: info
       - Worker2:
           icon: kubernetes.png
           description: "Kubernetes Worker Node 2"
           proxmoxNode: pve
           proxmoxVMID: 102
           widget:
-            type: proxmox
-            url: "https://alixroden.co.uk:8006"
-            password: "a95c3d2e-5ca9-4437-ab81-62ba20ca8b89"
-            username: "kubernetes@pve!ccm"
+            type: glances
+            url: http://192.168.1.102:61208
+            metric: info
   proxmox.yaml: |
     pve:
       url: "https://alixroden.co.uk:8006"
@@ -62,5 +59,5 @@ data:
           show: true
           cpu: true
           memory: true
-          showLabel: true
+          showLabel: tru
   docker.yaml: ""
