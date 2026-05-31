@@ -16,24 +16,18 @@ data:
   services.yaml: |
     - Cluster:
       - ControlPlane:
-          proxmoxNode: pve
-          proxmoxVMID: 100
           widget:
             type: glances
             url: http://192.168.1.100:61208
             metric: process
             version: 4
       - Worker1:
-          proxmoxNode: pve
-          proxmoxVMID: 101
           widget:
             type: glances
             url: http://192.168.1.101:61208
             metric: process
             version: 4
       - Worker2:
-          proxmoxNode: pve
-          proxmoxVMID: 102
           widget:
             type: glances
             url: http://192.168.1.102:61208
