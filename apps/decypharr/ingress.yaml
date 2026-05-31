@@ -3,6 +3,8 @@ kind: IngressRoute
 metadata:
   name: decypharr
   namespace: media
+  annotations:
+    external-dns.alpha.kubernetes.io/target: traefik.alixroden.co.uk
 spec:
   entryPoints:
     - websecure
