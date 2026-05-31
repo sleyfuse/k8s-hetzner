@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: comet
+  namespace: media
+spec:
+  selector:
+    matchLabels:
+      app: comet
+  template:
+    metadata:
+      labels:
+        app: comet
+    spec:
+      containers:
+        - name: comet
+          image: g0ldyy/comet
+          ports:
+            - containerPort: 8000
+          env:
+            - name: DATABASE_TYPE
+              value: "postgresql"
+            - name: DATABASE_URL
+              value: "app:CB61TMnLzTYreWdCaEwYQiugNnEJJ79gRdpfoCt2o2yZjP5poLMTTpV2L6N0vFxP@postgresql-rw.default.svc.cluster.local:5432/comet"
+            - name: TZ
+              value: "Europe/Helsinki"
+            - name: ADMIN_DASHBOARD_PASSWORD
+              value: "admin"
+          volumeMounts:
+            - name: comet-data
+              mountPath: /app/data
+      volumes:
+        - name: comet-data
+          persistentVolumeClaim:
+            claimName: comet-data-pvc

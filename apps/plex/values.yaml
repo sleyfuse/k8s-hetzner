@@ -5,6 +5,8 @@ pms:
       gpu.intel.com/xe: "1"
     limits:
       gpu.intel.com/xe: "1"
+  securityContext:
+    privileged: true
 extraEnv:
   PLEX_CLAIM: "claim-CNc19oQfrQXy98s9hnwF"
 extraInitContainers:
@@ -43,4 +45,11 @@ extraContainers:
 extraVolumes:
   - name: wg-conf
     secret:
-      secretName: wg-conf
+    secretName: wg-conf
+  - name: mediamount
+    persistentVolumeClaim:
+      claimName: media-pvc
+extraVolumeMounts:
+  - name: mediamount
+    mountPath: /mnt
+    mountPropagation: Bidirectional

@@ -8,3 +8,6 @@ spec:
     shm: 1Gi
   storage:
     size: 10Gi
+  postgresql:
+    parameters:
+      dynamic_shared_memory_type: "sysv"

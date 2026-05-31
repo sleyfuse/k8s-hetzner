@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: comet
+  labels:
+    app: comet
+  namespace: media
+spec:
+  selector:
+    app: comet
+  ports:
+    - port: 8000
+      targetPort: 8000
