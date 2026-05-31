@@ -2,9 +2,10 @@ apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
   name: postgresql
-  namespace: infra
 spec:
   instances: 2
-
+  ephemeralVolumesSizeLimit:
+    shm: 1Gi
   storage:
     size: 10Gi
+  dynamic_shared_memory_type: "sysv"

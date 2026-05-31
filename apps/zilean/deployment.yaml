@@ -28,18 +28,21 @@ spec:
             - name: POSTGRES_DB
               value: zilean
             - name: POSTGRES_HOST
-              value: postgresql.infra.svc.cluster.local
+              valueFrom:
+                secretKeyRef:
+                  name: postgresql-app
+                  key: host
             - name: POSTGRES_PORT
               value: "5432"
             - name: POSTGRES_USER
               valueFrom:
                 secretKeyRef:
-                  name: zilean-db-credentials
+                  name: postgresql-app
                   key: username
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: zilean-db-credentials
+                  name: postgresql-app
                   key: password
           volumeMounts:
             - name: zilean-data
