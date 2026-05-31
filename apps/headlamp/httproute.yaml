@@ -9,6 +9,7 @@ metadata:
     gethomepage.dev/group: Administration
     gethomepage.dev/namespace: kube-system
     gethomepage.dev/app: headlamp
+    gethomepage.dev/description: "Kubernetes Cluster Dashboard/API Resource Viewer"
     gethomepage.dev/icon: headlamp.png
     gethomepage.dev/url: "https://headlamp.alixroden.co.uk"
 spec:
