@@ -7,4 +7,4 @@ metadata:
 data:
   traefik-forward-auth.ini: |
     cookie-domain=alixroden.co.uk
-    auth-host=tfa.alixroden.co.uk
+    auth-host=keycloak.alixroden.co.uk

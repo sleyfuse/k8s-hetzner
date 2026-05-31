@@ -17,14 +17,3 @@ spec:
           port: 8080
   tls:
     secretName: alixroden-co-uk-tls
----
-apiVersion: traefik.io/v1alpha1
-kind: Middleware
-metadata:
-  name: redirect-https
-  namespace: keycloak
-spec:
-  redirectScheme:
-    scheme: https
-    port: "443"
-    permanent: true
