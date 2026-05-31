@@ -16,6 +16,7 @@ spec:
       containers:
         - name: zilean
           image: ghcr.io/thoroslives/zilean:latest
+
           ports:
             - containerPort: 8181
           env:
