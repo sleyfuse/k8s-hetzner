@@ -6,6 +6,10 @@ metadata:
 spec:
   db:
     host: postgresql-db
+    port: 5432
+    database: keycloak
+    url: jdbc:postgresql://postgresql-db:5432/keycloak
+    schema: public
     passwordSecret:
       key: password
       name: keycloak-db-secret
