@@ -18,15 +18,10 @@ spec:
       name: keycloak-db-secret
     vendor: postgres
   hostname:
-    hostname: https://keycloak.alixroden.co.uk
-    admin: https://keycloak.alixroden.co.uk/admin
     strict: false
     backchannelDynamic: true
   http:
-    httpEnabled: true
-    httpPort: 80
-    httpsPort: 443
-    tlsSecret: alixroden-co-uk-tls
+    httpEnabled: false
   instances: 1
   proxy:
     headers: xforwarded
