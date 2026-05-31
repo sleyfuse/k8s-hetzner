@@ -20,6 +20,8 @@ spec:
           ports:
             - containerPort: 6868
           env:
+            - name: AUTH
+              value: "off"
             - name: PGID
               value: "1000"
             - name: PUID
