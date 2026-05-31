@@ -35,6 +35,5 @@ spec:
       terminationGracePeriodSeconds: 0
       volumes:
         - name: media_mount
-          hostPath:
-            path: /k8s-media
-            type: DirectoryOrCreate
+          persistentVolumeClaim:
+            claimName: media-pvc
