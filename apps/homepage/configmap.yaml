@@ -9,16 +9,11 @@ data:
   kubernetes.yaml: |
     mode: cluster
   settings.yaml: ""
-  #settings.yaml: |
-  #  providers:
-  #    longhorn:
-  #      url: https://longhorn.my.network
   custom.css: ""
   custom.js: ""
-  bookmarks.yaml: |
-
-  services.yaml: |
-
+  bookmarks.yaml: ""
+  services.yaml: ""
+  proxmox.yaml: ""
   widgets.yaml: |
     - kubernetes:
         cluster:

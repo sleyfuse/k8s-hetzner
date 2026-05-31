@@ -54,6 +54,9 @@ spec:
             initialDelaySeconds: 5
             periodSeconds: 15
           volumeMounts:
+            - mountPath: /app/config/proxmox.yaml
+              name: homepage-config
+              subPath: proxmox.yaml
             - mountPath: /app/config/custom.js
               name: homepage-config
               subPath: custom.js
