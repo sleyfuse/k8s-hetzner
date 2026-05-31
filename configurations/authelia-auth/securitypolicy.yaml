@@ -3,6 +3,7 @@ apiVersion: gateway.envoyproxy.io/v1alpha1
 kind: SecurityPolicy
 metadata:
   name: "authelia-extauthz-by-gateway"
+  namespace: "authelia"
 spec:
   targetRefs:
     - group: "gateway.networking.k8s.io"
@@ -20,7 +21,7 @@ spec:
     http:
       backendRefs:
         - name: "authelia"
-          namespace: "default"
+          namespace: "authelia"
           port: 80
       path: "/api/authz/ext-authz/"
       headersToBackend:
