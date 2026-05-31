@@ -5,11 +5,7 @@ metadata:
   name: traefik-forward-auth
   namespace: traefik
 data:
-  traefik_forward_auth.ini: |
-    INSECURE_COOKIE: "false"
-    COOKIE_DOMAIN: alixroden.co.uk
-    DOMAINS: alixroden.co.uk
-    AUTH_HOST: tfa.alixroden.co.uk
+  traefik-forward-auth.ini: |
     providers.oidc.issuer-url=https://keycloak.alixroden.co.uk/auth/realms/master
     providers.oidc.client-id=traefik-forward-auth
     providers.oidc.client-secret=ntta77UrmyyEOq8Gf
