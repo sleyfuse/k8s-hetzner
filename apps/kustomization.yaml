@@ -22,3 +22,4 @@ resources:
   - local-path-provisioner
   - sonarr
   - radarr
+  - prowlarr
