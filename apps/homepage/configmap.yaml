@@ -18,6 +18,8 @@ data:
       Administration:
         style: row
         columns: 6
+    headerStyle: boxed
+    target: _blank
   custom.css: ""
   custom.js: ""
   bookmarks.yaml: ""
