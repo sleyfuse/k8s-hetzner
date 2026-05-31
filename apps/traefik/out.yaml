@@ -21,6 +21,10 @@ data:
         enabled: true
       kubernetesCRD:
         allowCrossNamespace: true
+    ports:
+      web:
+        redirectTo:
+          port: websecure
 kind: ConfigMap
 metadata:
   labels:

@@ -18,11 +18,7 @@ providers:
     enabled: true
   kubernetesCRD:
     allowCrossNamespace: true
-entrypoints:
+ports:
   web:
-    http:
-      redirections:
-        entryPoint:
-          to: websecure
-  websecure:
-    address: ":443"
+    redirectTo:
+      port: websecure
