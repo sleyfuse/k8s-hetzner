@@ -3,7 +3,7 @@ apiVersion: gateway.envoyproxy.io/v1alpha1
 kind: SecurityPolicy
 metadata:
   name: "authelia-extauthz-by-gateway"
-  namespace: "authelia"
+  namespace: "kube-system"
 spec:
   targetSelectors:
     - kind: HTTPRoute
