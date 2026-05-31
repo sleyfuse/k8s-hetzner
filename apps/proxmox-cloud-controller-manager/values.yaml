@@ -6,5 +6,16 @@ config:
       token_secret: "a95c3d2e-5ca9-4437-ab81-62ba20ca8b89 "
       region: helsinki
 useDaemonSet: true
-nodeSelector:
-  node-role.kubernetes.io/control-plane: ""
+affinity:
+  nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: node-role.kubernetes.io/control-plane
+              operator: Exists
+tolerations:
+  - key: node-role.kubernetes.io/control-plane
+    effect: NoSchedule
+enabledControllers:
+  - cloud-node
+  - cloud-node-lifecycle
