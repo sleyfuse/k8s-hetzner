@@ -22,7 +22,7 @@ data:
           widget:
             type: glances
             url: http://192.168.1.100:61208
-            metric: info
+            metric: containers
             version: 4
       - Worker1:
           icon: kubernetes.png
@@ -31,7 +31,7 @@ data:
           widget:
             type: glances
             url: http://192.168.1.101:61208
-            metric: info
+            metric: containers
             version: 4
       - Worker2:
           icon: kubernetes.png
@@ -40,7 +40,7 @@ data:
           widget:
             type: glances
             url: http://192.168.1.102:61208
-            metric: info
+            metric: containers
             version: 4
   proxmox.yaml: |
     pve:
