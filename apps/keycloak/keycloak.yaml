@@ -4,6 +4,10 @@ metadata:
   name: example-kc
   namespace: keycloak
 spec:
+  admin:
+    tlsSecret: alixroden-co-uk-tls
+  startOptimized: true
+
   db:
     host: postgres-db.keycloak.svc.cluster.local
     port: 5432
@@ -20,10 +24,12 @@ spec:
   ingress:
     enabled: false
   hostname:
-    hostname: http://keycloak.alixroden.co.uk
+    hostname: https://keycloak.alixroden.co.uk
     strict: false
+    backChannelDynamic: true
   http:
     httpEnabled: true
+    tlsSecret: alixroden-co-uk-tls
   instances: 1
   proxy:
-    headers: xforwarded
+    headers: forwarded
