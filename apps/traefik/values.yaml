@@ -20,5 +20,17 @@ providers:
     allowCrossNamespace: true
 ports:
   web:
-    redirectTo:
-      port: websecure
+    port: :80
+  websecure:
+    port: :443
+    tls:
+      enabled: true
+    middlewares:
+      - strip@kubernetescrd
+additionalArguments:
+  - --entryPoints.web.http.redirections.entryPoint.to=websecure
+  - --entryPoints.web.http.redirections.entryPoint.scheme=https
+  - --entryPoints.web.http.redirections.entryPoint.permanent=true
+  - --entryPoints.web.observability.accessLogs=false
+  - --entryPoints.web.observability.metrics=false
+  - --entryPoints.web.observability.tracing=false
