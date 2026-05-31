@@ -12,8 +12,4 @@ spec:
       services:
         - kind: Service
           name: headlamp
-          namespace: kube-system
           port: 80
-      middlewares:
-        - name: traefik-forward-auth
-          namespace: traefik
