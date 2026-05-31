@@ -11,4 +11,3 @@ resources:
   - node-feature-discovery
   - intel-device-plugins-operator
   - intel-device-plugins-gpu
-  - capacitor-next
