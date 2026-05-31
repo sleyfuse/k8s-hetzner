@@ -9,9 +9,9 @@ spec:
   selector:
     app: traefik-forward-auth
   ports:
-    - name: http
-      port: 80
+    - name: web
       targetPort: 4181
+      port: 4181
       protocol: TCP
 ---
 apiVersion: apps/v1
