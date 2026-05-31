@@ -9,7 +9,6 @@ data:
       - name: kubeconfig
         configMap:
           name: headlamp-kubeconfig
-          namespace: kube-system
     volumeMounts:
       - name: kubeconfig
         mountPath: /etc/headlamp/kubeconfig
