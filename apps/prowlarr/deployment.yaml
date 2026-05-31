@@ -17,6 +17,8 @@ spec:
         - name: prowlarr
           image: linuxserver/prowlarr
           imagePullPolicy: Always
+          imagePullSecrets:
+            - name: ghcr-auth
           ports:
             - containerPort: 9696
           env:
