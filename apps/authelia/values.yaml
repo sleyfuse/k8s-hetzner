@@ -1,8 +1,14 @@
 config:
+  server:
+    endpoints:
+      authz:
+        ext-authz:
+          implementaiton: "ExtAuthz"
   session:
     cookies:
       - domain: alixroden.co.uk
         authelia_url: "https://auth.alixroden.co.uk"
+        default_redirection_url: "https://alixroden.co.uk"
   access_control:
     default_policy: one_factor
   theme: light
