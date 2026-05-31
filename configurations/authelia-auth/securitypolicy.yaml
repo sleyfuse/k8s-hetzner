@@ -3,13 +3,11 @@ apiVersion: gateway.envoyproxy.io/v1alpha1
 kind: SecurityPolicy
 metadata:
   name: "authelia-extauthz-by-gateway"
-  namespace: "authelia"
 spec:
   targetRefs:
     - group: "gateway.networking.k8s.io"
       kind: "HTTPRoute"
       name: "headlamp"
-      namespace: "headlamp"
   extAuth:
     headersToExtAuth:
       - "accept"
