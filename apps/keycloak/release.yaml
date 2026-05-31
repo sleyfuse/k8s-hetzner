@@ -19,6 +19,9 @@ spec:
       name: keycloak-values
   install:
     createNamespace: true
+    strategy:
+      name: RetryOnFailure
+      retryInterval: 3s
   interval: 1m0s
   releaseName: keycloak
   storageNamespace: keycloak

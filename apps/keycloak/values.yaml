@@ -9,13 +9,6 @@ persistence:
   storageClass: proxmox-data-xfs
   accessMode: ReadWriteOnce
   size: 10Gi
-resources:
-  requests:
-    memory: "1Gi"
-    cpu: "500m"
-  limits:
-    memory: "2Gi"
-    cpu: "1000m"
 tls:
   enabled: true
   certManager:
