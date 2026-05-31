@@ -5,6 +5,7 @@ config:
   extraArgs:
     - "-kubeconfig=/etc/headlamp/kubeconfig"
     - "-proxy-auth=true"
+  inClusterContextName: in-cluster
 volumes:
   - name: kubeconfig
     configMap:
@@ -17,6 +18,9 @@ volumeMounts:
 serviceAccount:
   create: true
   name: headlamp-sa
+persistentVolumeClaim:
+  enabled: true
+  size: 1Gi
 extraManifests:
   - |
     apiVersion: v1
