@@ -103,6 +103,6 @@ metadata:
     app: traefik-forward-auth
 type: Opaque
 data:
-  traefik-forward-auth-google-client-id: "eLp4mrWrRSgWle_tLl_3Xg"
-  traefik-forward-auth-google-client-secret: "5ZOtxer-vDX1HEBJ3xiW5Q"
-  traefik-forward-auth-secret: "tWTbOhjwagyLhcZYv5lA-g"
+  traefik-forward-auth-google-client-id: "bDhnZm5wTFZtN0RnK2NpR2hrQzl5MEplaG1vbnRYRFhwYWFRVFNZQ3M4QT0="
+  traefik-forward-auth-google-client-secret: "T1poVzZMS2tiNm5JKy9DTDdjeVozS1hqSEVoQ0ZzM0l3dEJLbHpZNUR5cz0="
+  traefik-forward-auth-secret: "QWtWZGZHOFVnMS9TYXh4MmU2Y3NOVGYvWW9rRGE3VXJGblNtcGpPU1FzWT0="
