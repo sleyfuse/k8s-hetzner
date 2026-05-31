@@ -43,10 +43,6 @@ spec:
             - name: http
               containerPort: 4181
           env:
-            - name: DOMAIN
-              value: "alixroden.co.uk"
-            - name: COOKIE_DOMAIN
-              value: "alixroden.co.uk"
             - name: CONFIG
               value: "/config"
             - name: SECRET

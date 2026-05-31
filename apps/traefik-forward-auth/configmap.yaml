@@ -9,3 +9,5 @@ data:
     providers.oidc.issuer-url=https://keycloak.alixroden.co.uk/auth/realms/master
     providers.oidc.client-id=traefik-forward-auth
     providers.oidc.client-secret=ntta77UrmyyEOq8Gf
+    default-provider=oidc
+    cookie-domain=alixroden.co.uk
