@@ -7,6 +7,8 @@ metadata:
     gethomepage.dev/enabled: "true"
     gethomepage.dev/name: Headlamp
     gethomepage.dev/group: Administration
+    gethomepage.dev/namespace: kube-system
+    gethomepage.dev/app: headlamp
     gethomepage.dev/icon: headlamp.png
     gethomepage.dev/url: "https://headlamp.alixroden.co.uk"
 spec:
