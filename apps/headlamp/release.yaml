@@ -5,15 +5,9 @@ metadata:
   name: headlamp
   namespace: flux-system
 spec:
-  chart:
-    spec:
-      chart: ./apps/headlamp/headlamp
-      reconcileStrategy: ChartVersion
-      sourceRef:
-        kind: GitRepository
-        name: flux-system
-        namespace: flux-system
-      version: "0.42.0"
+  chartRef:
+    kind: OCIRepository
+    name: headlamp
   valuesFrom:
     - kind: ConfigMap
       name: headlamp-values
