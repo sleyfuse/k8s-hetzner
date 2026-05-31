@@ -2,6 +2,9 @@
 ingressRoute:
   dashboard:
     enabled: true
+    annotations:
+      external-dns.alpha.kubernetes.io/target: traefik.example.com
+      kubernetes.io/ingress.class: traefik
     matchRule: Host(`dashboard.alixroden.co.uk`)
     entryPoints:
       - web
