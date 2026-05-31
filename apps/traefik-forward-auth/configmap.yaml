@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: traefik-forward-auth
+  namespace: traefik
+data:
+  INSECURE_COOKIE: "false"
+  COOKIE_DOMAIN: alixroden.co.uk
+  DOMAINS: alixroden.co.uk
+  AUTH_HOST: tfa.alixroden.co.uk
+  URL_PATH: /_oauth
+  DEFAULT_PROVIDER: oidc
+  PROVIDERS_OIDC_ISSUER_URL: https://keycloak.alixroden.co.uk/auth/realms/master
+  PROVIDERS_OIDC_CLIENT_ID: traefik-forward-auth

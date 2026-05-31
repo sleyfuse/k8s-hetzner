@@ -1,109 +1,110 @@
-#
-# Traefik Forward Auth Deployment
-#
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: traefik-forward-auth
-  labels:
-    app: traefik-forward-auth
-  namespace: traefik
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: traefik-forward-auth
-  strategy:
-    type: Recreate
-  template:
-    metadata:
-      labels:
-        app: traefik-forward-auth
-        traefik.port: "4181"
-        traefik.frontend.rule: Host(`autha.alixroden.co.uk`)
-        traefik.frontend.auth.forward.address: http://traefik-forward-auth:4181
-        traefik.frontend.auth.forward.trustForwardHeader: "true"
-    spec:
-      terminationGracePeriodSeconds: 60
-      containers:
-        - image: thomseddon/traefik-forward-auth:2
-          name: traefik-forward-auth
-          ports:
-            - containerPort: 4181
-              protocol: TCP
-          env:
-            - name: AUTH_HOST
-              value: "autha.alixroden.co.uk"
-            - name: COOKIE_DOMAIN
-              value: "alixroden.co.uk"
-            - name: OIDC_ISSUER
-              value: "https://auth.alixroden.co.uk/realms/master"
-            - name: SECRET
-              value: "fs5352352safaasgjn352"
-            - name: CLIENT_ID
-              valueFrom:
-                secretKeyRef:
-                  name: traefik-forward-auth-secrets
-                  key: traefik-forward-auth-google-client-id
-            - name: CLIENT_SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: traefik-forward-auth-secrets
-                  key: traefik-forward-auth-google-client-secret
-
----
-#
-# Auth Service
-#
 apiVersion: v1
 kind: Service
 metadata:
   name: traefik-forward-auth
   namespace: traefik
-  labels:
-    app: traefik-forward-auth
+
 spec:
-  type: ClusterIP
   selector:
     app: traefik-forward-auth
   ports:
-    - name: auth-http
-      port: 4181
+    - name: http
+      port: 80
       targetPort: 4181
-
+      protocol: TCP
 ---
-#
-# Auth Middleware
-#
-apiVersion: traefik.io/v1alpha1
-kind: Middleware
+apiVersion: apps/v1
+kind: Deployment
 metadata:
+  namespace: traefik
   name: traefik-forward-auth
-  namespace: traefik
-spec:
-  forwardAuth:
-    address: http://traefik-forward-auth:4181
-    authResponseHeaders:
-      - X-Forwarded-User
-
----
-#
-# Secrets
-#
-# Kubernetes requires secret values to be converted to base64 when defined
-# explicitly like this. (use `echo -n 'secret-value' | base64`)
-#
-# These are here for completeness, in reality you may define these elsewhere,
-# for example using kustomize (shown in advanced examples)
-#
-apiVersion: v1
-kind: Secret
-metadata:
-  name: traefik-forward-auth-secrets
-  namespace: traefik
   labels:
     app: traefik-forward-auth
-type: Opaque
-data:
-  traefik-forward-auth-google-client-id: "bDhnZm5wTFZtN0RnK2NpR2hrQzl5MEplaG1vbnRYRFhwYWFRVFNZQ3M4QT0="
-  traefik-forward-auth-google-client-secret: "T1poVzZMS2tiNm5JKy9DTDdjeVozS1hqSEVoQ0ZzM0l3dEJLbHpZNUR5cz0="
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: traefik-forward-auth
+  template:
+    metadata:
+      labels:
+        app: traefik-forward-auth
+      annotations:
+        container.apparmor.security.beta.kubernetes.io/traefik-forward-auth: runtime/default
+    spec:
+      containers:
+        - name: traefik-forward-auth
+          image: thomseddon/traefik-forward-auth
+          imagePullPolicy: Always
+          securityContext:
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+            runAsUser: 65534
+            runAsGroup: 65534
+            capabilities:
+              drop:
+                - ALL
+          livenessProbe:
+            failureThreshold: 3
+            tcpSocket:
+              port: 4181
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          resources:
+            limits:
+              memory: "10Mi"
+              cpu: "100m"
+          ports:
+            - name: http
+              containerPort: 4181
+          env:
+            - name: PROVIDERS_OIDC_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: traefik-forward-auth
+                  key: PROVIDERS_OIDC_CLIENT_SECRET
+            - name: SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: traefik-forward-auth
+                  key: SECRET
+            - name: DEFAULT_PROVIDER
+              valueFrom:
+                configMapKeyRef:
+                  name: traefik-forward-auth
+                  key: DEFAULT_PROVIDER
+            - name: PROVIDERS_OIDC_ISSUER_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: traefik-forward-auth
+                  key: PROVIDERS_OIDC_ISSUER_URL
+            - name: PROVIDERS_OIDC_CLIENT_ID
+              valueFrom:
+                configMapKeyRef:
+                  name: traefik-forward-auth
+                  key: PROVIDERS_OIDC_CLIENT_ID
+            - name: INSECURE_COOKIE
+              valueFrom:
+                configMapKeyRef:
+                  name: traefik-forward-auth
+                  key: INSECURE_COOKIE
+            - name: COOKIE_DOMAIN
+              valueFrom:
+                configMapKeyRef:
+                  name: traefik-forward-auth
+                  key: COOKIE_DOMAIN
+            - name: DOMAINS
+              valueFrom:
+                configMapKeyRef:
+                  name: traefik-forward-auth
+                  key: DOMAINS
+            - name: AUTH_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: traefik-forward-auth
+                  key: AUTH_HOST
+            - name: URL_PATH
+              valueFrom:
+                configMapKeyRef:
+                  name: traefik-forward-auth
+                  key: URL_PATH

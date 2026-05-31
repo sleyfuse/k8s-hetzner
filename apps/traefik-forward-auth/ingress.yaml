@@ -1,0 +1,18 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: traefik-forward-auth
+  namespace: traefik
+
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`tfa.mydomain.io`)
+      services:
+        - name: traefik-forward-auth
+          port: 80
+  tls:
+    - secretName: alixroden-co-uk-tls
