@@ -4,6 +4,8 @@ kind: Kustomization
 resources:
   - repo.yaml
   - release.yaml
+  - rbac.yaml
+  - ingress.yaml
 configMapGenerator:
   - name: headlamp-values
     namespace: flux-system
