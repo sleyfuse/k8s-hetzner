@@ -20,7 +20,7 @@ spec:
       containers:
         - image: cy01/blackhole:latest
           imagePullPolicy: IfNotPresent
-          name: decypharr_app
+          name: decypharrapp
           ports:
             - containerPort: 8282
               name: http
