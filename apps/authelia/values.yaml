@@ -2,12 +2,18 @@ configMap:
   theme: dark
   session:
     cookies: [{ domain: 127.0.0.1 }]
-  storage:
-    local: { enabled: true }
   notifier:
     filesystem: { enabled: true }
   authentication_backend:
     file: { enabled: true, path: /config/users.yaml }
+  storage:
+    postgres:
+      enabled: true
+      deploy: true
+      address: tcp://authelia-postgresql:5432
+      database: authelia
+      username: authelia
+      password: { secret_name: db-creds }
   identity_providers:
     oidc:
       enabled: true
@@ -62,14 +68,6 @@ pod:
   extraVolumes:
     - name: users
       secret: { secretName: users }
-storage:
-  postgres:
-    enabled: true
-    deploy: true
-    address: tcp://authelia-postgresql:5432
-    database: authelia
-    username: authelia
-    password: { secret_name: db-creds }
 postgresql:
   auth:
     existingSecret: db-creds
