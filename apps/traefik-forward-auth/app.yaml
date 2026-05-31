@@ -28,16 +28,14 @@ spec:
             - containerPort: 4181
               protocol: TCP
           env:
-            - name: DOMAIN
-              value: "alixroden.co.uk"
-            - name: INSECURE_COOKIE
-              value: "false"
             - name: AUTH_HOST
               value: "auth.alixroden.co.uk"
             - name: COOKIE_DOMAIN
               value: "alixroden.co.uk"
             - name: OIDC_ISSUER
               value: "https://auth.alixroden.co.uk/realms/master"
+            - name: SECRET
+              value: "fs5352352safaasgjn352"
             - name: CLIENT_ID
               valueFrom:
                 secretKeyRef:
