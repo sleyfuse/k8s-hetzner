@@ -29,8 +29,9 @@ spec:
             - mountPath: /mnt
               name: mediamount
               mountPropagation: Bidirectional
-            - mountPath: /app
+            - mountPath: /app/config
               name: config
+              subPath: config
           securityContext:
             privileged: true
           resources:
@@ -43,6 +44,6 @@ spec:
           persistentVolumeClaim:
             claimName: media-pvc
         - name: config
-          persistentVolumeClaim:
-            claimName: config-pvc
+          configMap:
+            name: decypharr-config
       terminationGracePeriodSeconds: 0
