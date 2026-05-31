@@ -20,3 +20,4 @@ resources:
   - plex
   - decypharr
   - local-path-provisioner
+  - sonarr

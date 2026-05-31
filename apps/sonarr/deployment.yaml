@@ -1,0 +1,43 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sonarr
+  namespace: media
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sonarr
+    spec:
+      containers:
+        - name: sonarr
+          securityContext:
+            privileged: true
+          image: linuxserver/sonarr
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8989
+          env:
+            - name: PGID
+              value: "1000"
+            - name: PUID
+              value: "1000"
+          volumeMounts:
+            - name: sonarr
+              mountPath: /config
+            - name: mediamnt
+              mountPath: /mnt
+              mountPropagation: Bidirectional
+          resources:
+            requests:
+              nextflow.io/fuse: "1"
+            limits:
+              nextflow.io/fuse: "1"
+      volumes:
+        - name: mediamount
+          persistentVolumeClaim:
+            claimName: media-pvc
+        - name: sonarr-config
+          persistentVolumeClaim:
+            claimName: sonarr-config-pvc
