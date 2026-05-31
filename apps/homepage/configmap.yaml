@@ -16,7 +16,6 @@ data:
   services.yaml: |
     - Cluster:
       - ControlPlane:
-          icon: kubernetes.png
           proxmoxNode: pve
           proxmoxVMID: 100
           widget:
@@ -25,7 +24,6 @@ data:
             metric: process
             version: 4
       - Worker1:
-          icon: kubernetes.png
           proxmoxNode: pve
           proxmoxVMID: 101
           widget:
@@ -34,7 +32,6 @@ data:
             metric: process
             version: 4
       - Worker2:
-          icon: kubernetes.png
           proxmoxNode: pve
           proxmoxVMID: 102
           widget:
