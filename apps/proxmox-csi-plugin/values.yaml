@@ -6,9 +6,11 @@ config:
       token_secret: "7dc221f7-37c9-4eda-b4f0-09d44e5c7a2b"
       region: helsinki
 nodeSelector:
-  node-role.kubernetes.io/control-plane: ""
+  node-role.kubernetes.io/control-plane: "true"
 tolerations:
   - key: node-role.kubernetes.io/control-plane
+    effect: NoSchedule
+  - key: node-role.kubernetes.io/master
     effect: NoSchedule
 storageClass:
   - name: proxmox-data-xfs
