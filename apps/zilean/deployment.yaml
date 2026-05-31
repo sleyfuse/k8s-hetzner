@@ -16,8 +16,6 @@ spec:
       containers:
         - name: zilean
           image: ghcr.io/thoroslives/zilean:latest
-          imagePullSecrets:
-            - name: ghcr-auth
           ports:
             - containerPort: 8181
           env:
