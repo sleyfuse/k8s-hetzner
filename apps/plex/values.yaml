@@ -1,7 +1,7 @@
 pms:
   configStorage: 10Gi
 extraEnv:
-  PLEX_CLAIM: "claim-chwosQ875X_M_J5zuYFQ"
+  PLEX_CLAIM: "claim-CNc19oQfrQXy98s9hnwF"
 resources:
   requests:
     gpu.intel.com/xe: 1
@@ -31,7 +31,7 @@ extraContainers:
     volumeMounts:
       - name: wg-conf
         mountPath: /etc/wireguard/
-        readOnly: true
+        readOnly: false
     securityContext:
       privileged: true
       capabilities:
