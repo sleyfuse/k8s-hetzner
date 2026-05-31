@@ -13,3 +13,4 @@ resources:
   - intel-device-plugins-gpu
   - homepage
   - traefik
+  - traefik-forward-auth

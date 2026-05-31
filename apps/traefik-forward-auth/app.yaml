@@ -32,7 +32,7 @@ spec:
               value: "alixroden.co.uk"
             # INSECURE_COOKIE is required unless using https entrypoint
             - name: INSECURE_COOKIE
-              value: "true"
+              value: "false"
             - name: PROVIDERS_GOOGLE_CLIENT_ID
               valueFrom:
                 secretKeyRef:
@@ -103,6 +103,6 @@ metadata:
     app: traefik-forward-auth
 type: Opaque
 data:
-  traefik-forward-auth-google-client-id: base64-client-id
-  traefik-forward-auth-google-client-secret: base64-client-secret
-  traefik-forward-auth-secret: base64-something-random
+  traefik-forward-auth-google-client-id: "YW5nbGV0aGFua3VudGlsYmVzdGNhbGx0b3doZXRoZXJoaWdod2F5YXZvaWRhaGVhZHM="
+  traefik-forward-auth-google-client-secret: "bW9vbndhbGtmYW1pbGlhcndpdGhvdXRoYWR0cnV0aG1hZ2ljdGhlcmVzZWFob25vcnI"
+  traefik-forward-auth-secret: "YnV5dmFwb3JxdWlja2x5c2xvcGVmb3JjZWdpdmluZ2NlbGx3aGlzdGxlZGF3bmdyZWE"
