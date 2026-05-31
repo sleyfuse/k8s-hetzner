@@ -3,10 +3,10 @@ data:
   values.yaml: |
     config:
       unsafeUseServiceAccountToken: true
+      extraArgs:
+        - "-unsafe-use-service-account-token"
 kind: ConfigMap
 metadata:
-  annotations:
-    kustomize.toolkit.fluxcd.io/substitute: disabled
   labels:
     reconcile.fluxcd.io/watch: Enabled
   name: headlamp-values
@@ -37,8 +37,8 @@ spec:
     disableTakeOwnership: false
     force: true
   valuesFrom:
-  - kind: ConfigMap
-    name: headlamp-values
+    - kind: ConfigMap
+      name: headlamp-values
 ---
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
