@@ -2,21 +2,24 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: tautulli
-  name: tautulli
+    app: aura
+  name: aura
   namespace: media
 spec:
   ports:
   - name: http
-    port: 8181
-    targetPort: 8181
+    port: 3000
+    targetPort: 3000
+  - name: api
+    port: 8888
+    targetPort: 8888
   selector:
-    app: tautulli
+    app: aura
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: tautulli-config-pvc
+  name: aura-config-pvc
   namespace: media
 spec:
   accessModes:
@@ -29,16 +32,16 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: tautulli
+  name: aura
   namespace: media
 spec:
   selector:
     matchLabels:
-      app: tautulli
+      app: aura
   template:
     metadata:
       labels:
-        app: tautulli
+        app: aura
       namespace: media
     spec:
       containers:
@@ -47,11 +50,18 @@ spec:
           value: "1000"
         - name: PUID
           value: "1000"
-        image: tautulli/tautulli
+        - name: UMASK
+          value: "002"
+        - name: TZ
+          value: Europe/Helsinki
+        image: ghcr.io/mediux-team/aura
         imagePullPolicy: Always
-        name: tautulli
+        imagePullSecrets:
+        - name: ghcr-auth
+        name: aura
         ports:
-        - containerPort: 8181
+        - containerPort: 3000
+        - containerPort: 8888
         resources:
           limits:
             nextflow.io/fuse: "1"
@@ -61,20 +71,26 @@ spec:
           privileged: true
         volumeMounts:
         - mountPath: /config
-          name: tautulli-config
+          name: aura-config
+        - mountPath: /mnt
+          mountPropagation: HostToContainer
+          name: mediamount
       nodeSelector:
         kubernetes.io/hostname: worker1
       volumes:
-      - name: tautulli-config
+      - name: aura-config
         persistentVolumeClaim:
-          claimName: tautulli-config-pvc
+          claimName: aura-config-pvc
+      - name: mediamount
+        persistentVolumeClaim:
+          claimName: media-pvc
 ---
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
   annotations:
     external-dns.alpha.kubernetes.io/target: traefik.alixroden.co.uk
-  name: tautulli
+  name: aura
   namespace: media
 spec:
   entryPoints:
@@ -82,12 +98,12 @@ spec:
   ingressClassName: traefik
   routes:
   - kind: Rule
-    match: Host(`tautulli.alixroden.co.uk`)
+    match: Host(`aura.alixroden.co.uk`)
     middlewares:
     - name: traefik-forward-auth
       namespace: traefik
     services:
-    - name: tautulli
+    - name: aura
       namespace: media
       port: 8181
       scheme: http

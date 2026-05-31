@@ -19,18 +19,28 @@ spec:
         - name: aura
           securityContext:
             privileged: true
-          image: aura/aura
+          image: ghcr.io/mediux-team/aura
           imagePullPolicy: Always
+          imagePullSecrets:
+            - name: ghcr-auth
           ports:
-            - containerPort: 8181
+            - containerPort: 3000
+            - containerPort: 8888
           env:
             - name: PGID
               value: "1000"
             - name: PUID
               value: "1000"
+            - name: UMASK
+              value: "002"
+            - name: TZ
+              value: "Europe/Helsinki"
           volumeMounts:
             - name: aura-config
               mountPath: /config
+            - name: mediamount
+              mountPath: /mnt
+              mountPropagation: HostToContainer
           resources:
             requests:
               nextflow.io/fuse: "1"
@@ -40,3 +50,6 @@ spec:
         - name: aura-config
           persistentVolumeClaim:
             claimName: aura-config-pvc
+        - name: mediamount
+          persistentVolumeClaim:
+            claimName: media-pvc
