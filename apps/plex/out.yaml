@@ -6,8 +6,10 @@ data:
       resources:
         requests:
           gpu.intel.com/xe: "1"
+          nextflow.io/fuse: "1"
         limits:
           gpu.intel.com/xe: "1"
+          nextflow.io/fuse: "1"
       securityContext:
         privileged: true
     extraEnv:
@@ -48,7 +50,7 @@ data:
     extraVolumes:
       - name: wg-conf
         secret:
-        secretName: wg-conf
+          secretName: wg-conf
       - name: mediamount
         persistentVolumeClaim:
           claimName: media-pvc
