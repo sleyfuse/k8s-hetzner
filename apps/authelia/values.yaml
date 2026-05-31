@@ -9,3 +9,13 @@ configMap:
     file: { enabled: true, path: /config/users.yaml }
 secret:
   existingSecret: crypto
+pod:
+  kind: Deployment
+  env: [{ name: TZ, value: Europe/Helsinki }]
+  extraVolumeMounts:
+    - name: users
+      mountPath: /config/users.yaml
+      subPath: users.yaml
+  extraVolumes:
+    - name: users
+      secret: { secretName: users }
