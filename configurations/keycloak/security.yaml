@@ -18,7 +18,7 @@ spec:
       issuer: "http://auth.alixroden.co.uk/realms/master"
       authorizationEndpoint: "http://auth.alixroden.co.uk/realms/master/protocol/openid-connect/auth"
       tokenEndpoint: "http://auth.alixroden.co.uk/realms/master/protocol/openid-connect/token"
-    clientID: "${CLIENT_ID}"
+    clientID: "envoy"
     clientSecret:
       name: keycloak-client-secret
     logoutPath: "/"
