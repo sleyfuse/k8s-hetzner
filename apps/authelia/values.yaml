@@ -5,6 +5,7 @@ config:
         authelia_url: "https://auth.alixroden.co.uk"
   access_control:
     default_policy: one_factor
+  theme: light
 
 usersDatabase:
   users:
@@ -28,3 +29,21 @@ redis:
   enabled: true
   auth:
     password: "postgresql"
+
+gateway:
+  enabled: true
+  hostnames:
+    - "auth.alixroden.co.uk"
+  parentRefs:
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      name: web
+      namespace: infra
+      sectionName: websecure-gw
+
+persistence:
+  size: 1Gi
+  enabled: true
+  storageClass: proxmox-data-xfs
+  accessModes:
+    - ReadWriteOnce
