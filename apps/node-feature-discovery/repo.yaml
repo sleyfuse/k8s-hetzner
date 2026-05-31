@@ -8,5 +8,3 @@ spec:
   interval: 1m0s
   type: oci
   url: oci://registry.k8s.io/nfd/charts/node-feature-discovery
-  secretRef:
-    name: ghcr-auth
