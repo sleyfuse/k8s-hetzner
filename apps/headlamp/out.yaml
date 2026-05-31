@@ -3,8 +3,10 @@ data:
   values.yaml: |
     config:
       inCluster: true
+      inClusterContextName: "default"
       serviceAccountTokenPath: /var/run/secrets/kubernetes.io/serviceaccount/token
       unsafeUseServiceAccountToken: true
+    autoMountServiceAccountToken: true
 kind: ConfigMap
 metadata:
   annotations:
