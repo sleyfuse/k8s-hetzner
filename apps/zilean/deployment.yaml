@@ -21,7 +21,7 @@ spec:
             - containerPort: 8181
           env:
             - name: "Zilean__Database__ConnectionString"
-              value: "Host=postgresql-rw.default.svc.cluster.local;Database=zilean;Username=app;Password=mCB61TMnLzTYreWdCaEwYQiugNnEJJ79gRdpfoCt2o2yZjP5poLMTTpV2L6N0vFxP;Include Error Detail=true;Timeout=30;CommandTimeout=3600;"
+              value: "Host=postgresql-rw.default.svc.cluster.local;Database=zilean;Username=app;Password=CB61TMnLzTYreWdCaEwYQiugNnEJJ79gRdpfoCt2o2yZjP5poLMTTpV2L6N0vFxP;Include Error Detail=true;Timeout=30;CommandTimeout=3600;"
             - name: "GITHUB_TOKEN"
               value: "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"
             - name: "TZ"
