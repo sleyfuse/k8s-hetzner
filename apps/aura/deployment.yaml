@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aura
+  namespace: media
+spec:
+  selector:
+    matchLabels:
+      app: aura
+  template:
+    metadata:
+      labels:
+        app: aura
+      namespace: media
+    spec:
+      nodeSelector:
+        kubernetes.io/hostname: worker1
+      containers:
+        - name: aura
+          securityContext:
+            privileged: true
+          image: aura/aura
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8181
+          env:
+            - name: PGID
+              value: "1000"
+            - name: PUID
+              value: "1000"
+          volumeMounts:
+            - name: aura-config
+              mountPath: /config
+          resources:
+            requests:
+              nextflow.io/fuse: "1"
+            limits:
+              nextflow.io/fuse: "1"
+      volumes:
+        - name: aura-config
+          persistentVolumeClaim:
+            claimName: aura-config-pvc

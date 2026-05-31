@@ -1,0 +1,95 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: tautulli
+  name: tautulli
+  namespace: media
+spec:
+  ports:
+  - name: http
+    port: 8181
+    targetPort: 8181
+  selector:
+    app: tautulli
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: tautulli-config-pvc
+  namespace: media
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: proxmox-data-xfs
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tautulli
+  namespace: media
+spec:
+  selector:
+    matchLabels:
+      app: tautulli
+  template:
+    metadata:
+      labels:
+        app: tautulli
+      namespace: media
+    spec:
+      containers:
+      - env:
+        - name: PGID
+          value: "1000"
+        - name: PUID
+          value: "1000"
+        image: tautulli/tautulli
+        imagePullPolicy: Always
+        name: tautulli
+        ports:
+        - containerPort: 8181
+        resources:
+          limits:
+            nextflow.io/fuse: "1"
+          requests:
+            nextflow.io/fuse: "1"
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /config
+          name: tautulli-config
+      nodeSelector:
+        kubernetes.io/hostname: worker1
+      volumes:
+      - name: tautulli-config
+        persistentVolumeClaim:
+          claimName: tautulli-config-pvc
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  annotations:
+    external-dns.alpha.kubernetes.io/target: traefik.alixroden.co.uk
+  name: tautulli
+  namespace: media
+spec:
+  entryPoints:
+  - websecure
+  ingressClassName: traefik
+  routes:
+  - kind: Rule
+    match: Host(`tautulli.alixroden.co.uk`)
+    middlewares:
+    - name: traefik-forward-auth
+      namespace: traefik
+    services:
+    - name: tautulli
+      namespace: media
+      port: 8181
+      scheme: http
+  tls:
+    secretName: alixroden-co-uk-tls
