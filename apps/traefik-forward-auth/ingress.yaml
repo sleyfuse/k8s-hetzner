@@ -4,6 +4,8 @@ kind: IngressRoute
 metadata:
   name: traefik-forward-auth
   namespace: traefik
+  annotations:
+    external-dns.alpha.kubernetes.io/target: traefik.alixroden.co.uk
 spec:
   entryPoints:
     - websecure
