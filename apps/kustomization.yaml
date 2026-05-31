@@ -9,3 +9,4 @@ resources:
   - proxmox-cloud-controller-manager
   - proxmox-csi-plugin
   - node-feature-discovery
+  - intel-device-plugins-operator
