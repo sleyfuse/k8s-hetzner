@@ -15,10 +15,27 @@ spec:
     spec:
       containers:
         - name: zilean
-          image: ipromknight/zilean
+          image: ghcr.io/thoroslives/zilean:latest
+          imagePullSecrets:
+            - name: ghcr-auth
           ports:
             - containerPort: 8181
           env:
+            - name: GITHUB_TOKEN
+              value: "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"
+            - name: TZ
+              value: "Europe/Helsinki"
+            - name: POSTGRES_DB
+              value: zilean
+            - name: POSTGRES_HOST
+              value: postgresql.infra.svc.cluster.local
+            - name: POSTGRES_PORT
+              value: "5432"
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: zilean-db-credentials
+                  key: username
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
