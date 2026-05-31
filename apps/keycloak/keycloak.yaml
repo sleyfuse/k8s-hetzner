@@ -24,8 +24,8 @@ spec:
     backchannelDynamic: true
   http:
     httpEnabled: true
-    httpPort: 8180
-    httpsPort: 8543
+    httpPort: 80
+    httpsPort: 443
     tlsSecret: alixroden-co-uk-tls
   instances: 1
   proxy:
