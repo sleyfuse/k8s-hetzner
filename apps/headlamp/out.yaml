@@ -2,50 +2,9 @@ apiVersion: v1
 data:
   values.yaml: |
     config:
-      inCluster: false
+      inCluster: true
+      serviceAccountTokenPath: /var/run/secrets/kubernetes.io/serviceaccount/token
       unsafeUseServiceAccountToken: true
-    volumes:
-      - name: headlamp-kubeconfig
-        configMap:
-          name: headlamp-kubeconfig
-      - name: kubeconfig
-        configMap:
-          name: headlamp-kubeconfig
-    volumeMounts:
-      - name: kubeconfig
-        mountPath: /home/headlamp/.kube/config
-        readOnly: true
-        subPath: kubeconfig
-      - name: headlamp-kubeconfig
-        mountPath: /home/headlamp/.config/Headlamp/kubeconfigs/config
-        readOnly: true
-        subPath: kubeconfig
-    extraManifests:
-      - |
-        apiVersion: v1
-        kind: ConfigMap
-        metadata:
-          name: headlamp-kubeconfig
-          namespace: kube-system
-        data:
-          kubeconfig: |
-            apiVersion: v1
-            kind: Config
-            clusters:
-            - cluster:
-                certificate-authority: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
-                server: https://kubernetes.default.svc
-              name: in-cluster
-            contexts:
-            - context:
-                cluster: in-cluster
-                user: headlamp-sa
-              name: in-cluster
-            current-context: in-cluster
-            users:
-            - name: headlamp-sa
-              user:
-                tokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
 kind: ConfigMap
 metadata:
   annotations:
