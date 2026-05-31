@@ -6,7 +6,7 @@ resources:
   - release.yaml
   - secret.yaml
 configMapGenerator:
-  - name: headlamp-values
+  - name: plex-values
     namespace: flux-system
     files:
       - values.yaml
