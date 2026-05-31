@@ -26,6 +26,7 @@ data:
         kind: ConfigMap
         metadata:
           name: headlamp-kubeconfig
+          namespace: kube-system
         data:
           kubeconfig: |
             apiVersion: v1
