@@ -9,4 +9,7 @@ spec:
     address: http://traefik-forward-auth:4181
     authResponseHeaders:
       - X-Forwarded-User
+      - X-User
     trustForwardHeader: true
+    maxBodySize: 1048576
+    maxResponseBodySize: 1048576
