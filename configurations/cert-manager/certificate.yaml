@@ -4,7 +4,8 @@ metadata:
   name: alixroden-co-uk-tls
   namespace: cert-manager
   annotations:
-    ://emberstack.com: "true"
+    reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
+    reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: ""
 spec:
   secretName: alixroden-co-uk-tls
   issuerRef:
