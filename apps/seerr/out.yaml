@@ -19,9 +19,6 @@ spec:
   releaseName: seerr
   storageNamespace: media
   targetNamespace: media
-  valuesFrom:
-  - kind: ConfigMap
-    name: seerr-values
 ---
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository

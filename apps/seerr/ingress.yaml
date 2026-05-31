@@ -12,7 +12,7 @@ spec:
     - match: Host(`seerr.alixroden.co.uk`)
       kind: Rule
       services:
-        - name: seerr
+        - name: seerr-seerr-chart
           port: 80
           namespace: media
           scheme: http
