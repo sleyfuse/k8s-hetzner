@@ -56,8 +56,6 @@ spec:
           value: Europe/Helsinki
         image: ghcr.io/mediux-team/aura
         imagePullPolicy: Always
-        imagePullSecrets:
-        - name: ghcr-auth
         name: aura
         ports:
         - containerPort: 3000
@@ -75,6 +73,8 @@ spec:
         - mountPath: /mnt
           mountPropagation: HostToContainer
           name: mediamount
+      imagePullSecrets:
+      - name: ghcr-auth
       nodeSelector:
         kubernetes.io/hostname: worker1
       volumes:

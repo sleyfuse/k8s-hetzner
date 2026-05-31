@@ -15,14 +15,14 @@ spec:
     spec:
       nodeSelector:
         kubernetes.io/hostname: worker1
+      imagePullSecrets:
+        - name: ghcr-auth
       containers:
         - name: aura
           securityContext:
             privileged: true
           image: ghcr.io/mediux-team/aura
           imagePullPolicy: Always
-          imagePullSecrets:
-            - name: ghcr-auth
           ports:
             - containerPort: 3000
             - containerPort: 8888
