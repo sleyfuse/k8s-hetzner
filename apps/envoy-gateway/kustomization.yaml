@@ -5,3 +5,4 @@ resources:
   - release.yaml
   - gatewayclass.yaml
   - gateway.yaml
+  - proxyconfig.yaml
