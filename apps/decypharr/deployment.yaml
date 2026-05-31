@@ -40,6 +40,11 @@ spec:
               nextflow.io/fuse: "1"
             limits:
               nextflow.io/fuse: "1"
+          env:
+            - name: PGID
+              value: "1000"
+            - name: PUID
+              value: "1000"
       volumes:
         - name: mediamount
           persistentVolumeClaim:
