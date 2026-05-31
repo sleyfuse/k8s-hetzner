@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - repo.yaml
   - release.yaml
+  - ghcr.yaml
 configMapGenerator:
   - name: proxmox-cloud-controller-manager-values
     namespace: flux-system

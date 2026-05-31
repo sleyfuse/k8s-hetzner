@@ -1,0 +1,8 @@
+apiVersion: v1
+data:
+  .dockerconfigjson: eyJhdXRocyI6eyJnaGNyLmlvIjp7InVzZXJuYW1lIjoic2xleWZ1c2UiLCJwYXNzd29yZCI6Imdob19ZMlllZjYxSmNnZXdMWmpoZ3dmTTdkODNzZUJoQm8xV05seFoiLCJhdXRoIjoiYzJ4bGVXWjFjMlU2WjJodlgxa3lXV1ZtTmpGS1kyZGxkMHhhYW1obmQyWk5OMlE0TTNObFFtaENiekZYVG14NFdnPT0ifX19
+kind: Secret
+metadata:
+  name: ghcr-auth
+  namespace: flux-system
+type: kubernetes.io/dockerconfigjson
