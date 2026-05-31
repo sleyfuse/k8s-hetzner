@@ -36,7 +36,7 @@ configMap:
           response_types: [id_token]
           revocation_endpoint_auth_method: none
           introspection_endpoint_auth_method: none
-          pushed_authorization_request_endpoint_auth_method: none
+          pushed_authorization_endpoint_auth_method: none
       cors:
         endpoints: [userinfo, authorization, token, revocation, introspection]
         allowed_origins_from_client_redirect_uris: true
