@@ -6,7 +6,6 @@ resources:
   - repo.yaml
   - release.yaml
   - httproute.yaml
-  - secret.yaml
 configMapGenerator:
   - name: authelia-values
     namespace: flux-system
