@@ -5,7 +5,7 @@ metadata:
   namespace: keycloak
 spec:
   db:
-    host: postgres-db
+    host: postgresql-db
     passwordSecret:
       key: password
       name: keycloak-db-secret
