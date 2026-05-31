@@ -12,7 +12,7 @@ spec:
       services:
         - kind: Service
           name: headlamp
-          port: 8080
+          port: 80
       middlewares:
         - name: traefik-forward-auth
           namespace: traefik
