@@ -13,7 +13,7 @@ spec:
         kind: HelmRepository
         name: seerr
         namespace: flux-system
-      version: "v3.2.0"
+      version: "3.6.0"
   valuesFrom:
     - kind: ConfigMap
       name: seerr-values
