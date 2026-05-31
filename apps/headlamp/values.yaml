@@ -4,7 +4,7 @@ config:
   inCluster: false
   extraArgs:
     - "-kubeconfig=/etc/headlamp/kubeconfig"
-  enableHelm: true
+    - "-proxy-auth=true"
 volumes:
   - name: kubeconfig
     configMap:
