@@ -1,0 +1,22 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kubernetes-reflector
+  namespace: flux-system
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: reflector
+      version: "v10.0.46"
+      sourceRef:
+        kind: HelmRepository
+        name: emberstack
+        namespace: flux-system
+
+  releaseName: kubernetes-reflector
+  install:
+    createNamespace: true
+  storageNamespace: cert-manager
+  targetNamespace: cert-manager
