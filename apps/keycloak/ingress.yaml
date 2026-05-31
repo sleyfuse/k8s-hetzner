@@ -17,3 +17,7 @@ spec:
           name: keycloak-operator
           namespace: keycloak
           port: 8080
+          scheme: http
+  ingressClassName: traefik
+  tls:
+    secretName: alixroden-co-uk-tls
