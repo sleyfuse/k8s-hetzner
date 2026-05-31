@@ -22,6 +22,7 @@ data:
           proxmoxVMID: 100
           widget:
             type: proxmox
+            node: pve
       - Worker1:
           icon: kubernetes.png
           description: "Kubernetes Worker Node 1"
@@ -29,6 +30,7 @@ data:
           proxmoxVMID: 101
           widget:
             type: proxmox
+            node: pve
       - Worker2:
           icon: kubernetes.png
           description: "Kubernetes Worker Node 2"
@@ -36,6 +38,7 @@ data:
           proxmoxVMID: 102
           widget:
             type: proxmox
+            node: pve
   proxmox.yaml: |
     pve:
       url: "https://alixroden.co.uk:8006"
