@@ -9,7 +9,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`decypharr.alixroden.com`)
+    - match: Host(`decypharr.alixroden.co.uk`)
       kind: Rule
       services:
         - name: decypharr
