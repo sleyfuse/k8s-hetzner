@@ -6,3 +6,4 @@ resources:
   - repo.yaml
   - secret.yaml
   - httproute.yaml
+  - namespace.yaml
