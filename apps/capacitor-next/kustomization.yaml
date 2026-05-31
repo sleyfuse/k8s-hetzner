@@ -5,3 +5,4 @@ resources:
   - release.yaml
   - repo.yaml
   - secret.yaml
+  - httproute.yaml

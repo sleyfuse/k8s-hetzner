@@ -20,5 +20,5 @@ spec:
   install:
     createNamespace: true
   releaseName: capacitor-next
-  storageNamespace: nfd
-  targetNamespace: nfd
+  storageNamespace: capacitor-next
+  targetNamespace: capacitor-next
