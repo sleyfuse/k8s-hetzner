@@ -33,7 +33,7 @@ spec:
               mountPath: /config
             - name: mediamount
               mountPath: /mnt
-              mountPropagation: Bidirectional
+              mountPropagation: HostToContainer
           resources:
             requests:
               nextflow.io/fuse: "1"
