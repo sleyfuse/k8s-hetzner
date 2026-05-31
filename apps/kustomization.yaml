@@ -24,3 +24,4 @@ resources:
   - radarr
   - prowlarr
   - profilarr
+  - byparr

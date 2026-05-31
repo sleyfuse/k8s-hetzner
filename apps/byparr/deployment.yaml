@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: byparr
+  labels:
+    app: byparr
+  namespace: media
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: byparr
+  template:
+    metadata:
+      labels:
+        app: byparr
+      namespace: media
+    spec:
+      containers:
+        - name: byparr
+          image: ghcr.io/thephaseless/byparr
+          imagePullSecrets:
+            - name: ghcr-auth
+          env:
+            - name: "TZ"
+              value: "Europe/Helsinki"
+            - name: "PORT"
+              value: "8191"
+          ports:
+            - containerPort: 8191
+              name: http
+              protocol: TCP
