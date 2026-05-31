@@ -37,6 +37,4 @@ spec:
           persistentVolumeClaim:
             claimName: zilean-data-pvc
         - name: zilean-tmp
-          emptyDir:
-            sizeLimit: "3Gi"
-            medium: "Filesystem"
+          emptyDir: {}
