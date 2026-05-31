@@ -9,13 +9,3 @@ persistence:
   storageClass: proxmox-data-xfs
   accessMode: ReadWriteOnce
   size: 10Gi
-tls:
-  enabled: true
-  certManager:
-    enabled: true
-    issuerRef:
-      name: "letsencrypt"
-      kind: ClusterIssuer
-      namespace: cert-manager
-    dnsNames:
-      - auth.alixroden.co.uk
