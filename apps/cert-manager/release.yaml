@@ -16,7 +16,8 @@ spec:
       interval: 5m
   install:
     createNamespace: true
-    crds: CreateReplace
+    crds: Create
+    serverSideApply: true
     remediation:
       retries: 2
   upgrade:
