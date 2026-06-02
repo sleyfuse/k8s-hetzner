@@ -4,6 +4,8 @@ metadata:
   labels:
     app.kubernetes.io/name: cloudnative-pg
   name: cnpg-system
+spec: {}
+status: {}
 ---
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
@@ -476,6 +478,12 @@ spec:
     storage: true
     subresources:
       status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: null
+  storedVersions: null
 ---
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
@@ -663,6 +671,12 @@ spec:
     served: true
     storage: true
     subresources: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: null
+  storedVersions: null
 ---
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
@@ -8166,6 +8180,12 @@ spec:
         specReplicasPath: .spec.instances
         statusReplicasPath: .status.instances
       status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: null
+  storedVersions: null
 ---
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
@@ -8760,6 +8780,12 @@ spec:
     storage: true
     subresources:
       status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: null
+  storedVersions: null
 ---
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
@@ -8837,6 +8863,12 @@ spec:
     storage: true
     subresources:
       status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: null
+  storedVersions: null
 ---
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
@@ -9023,6 +9055,12 @@ spec:
     served: true
     storage: true
     subresources: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: null
+  storedVersions: null
 ---
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
@@ -18403,6 +18441,12 @@ spec:
         specReplicasPath: .spec.instances
         statusReplicasPath: .status.instances
       status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: null
+  storedVersions: null
 ---
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
@@ -18598,6 +18642,12 @@ spec:
     storage: true
     subresources:
       status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: null
+  storedVersions: null
 ---
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
@@ -18789,6 +18839,12 @@ spec:
     storage: true
     subresources:
       status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: null
+  storedVersions: null
 ---
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
@@ -18938,6 +18994,12 @@ spec:
     storage: true
     subresources:
       status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: null
+  storedVersions: null
 ---
 apiVersion: v1
 kind: ServiceAccount
@@ -19836,6 +19898,8 @@ spec:
     targetPort: 9443
   selector:
     app.kubernetes.io/name: cloudnative-pg
+status:
+  loadBalancer: {}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -19849,6 +19913,7 @@ spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: cloudnative-pg
+  strategy: {}
   template:
     metadata:
       labels:
@@ -19862,6 +19927,8 @@ spec:
         - --config-map-name=cnpg-controller-manager-config
         - --secret-name=cnpg-controller-manager-config
         - --webhook-port=9443
+        - --log-field-level=level
+        - --log-field-timestamp=ts
         command:
         - /manager
         env:
@@ -19936,6 +20003,7 @@ spec:
           defaultMode: 420
           optional: true
           secretName: cnpg-webhook-cert
+status: {}
 ---
 apiVersion: admissionregistration.k8s.io/v1
 kind: MutatingWebhookConfiguration
@@ -20128,3 +20196,4 @@ webhooks:
     resources:
     - scheduledbackups
   sideEffects: None
+---
