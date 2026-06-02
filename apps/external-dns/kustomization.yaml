@@ -4,7 +4,6 @@ resources:
   - repo.yaml
   - release.yaml
   - secret.yaml
-  - values.yaml
 configMapGenerator:
   - files:
       - values.yaml

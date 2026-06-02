@@ -3,8 +3,6 @@ kind: Kustomization
 resources:
   - repo.yaml
   - release.yaml
-  - out.yaml
-  - values.yaml
 configMapGenerator:
   - files:
       - values.yaml
