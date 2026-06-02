@@ -13,13 +13,12 @@ spec:
         kind: HelmRepository
         name: proxmox-cloud-controller-manager
         namespace: flux-system
-      interval: 30m
   valuesFrom:
     - kind: ConfigMap
       name: proxmox-cloud-controller-manager-values
   install:
     createNamespace: true
-  interval: 1m0s
+  interval: 30m
   releaseName: proxmox-cloud-controller-manager
   storageNamespace: kube-system
   targetNamespace: kube-system

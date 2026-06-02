@@ -13,13 +13,12 @@ spec:
         kind: HelmRepository
         name: traefik
         namespace: flux-system
-      interval: 30m
   valuesFrom:
     - kind: ConfigMap
       name: traefik-values
   install:
     createNamespace: true
-  interval: 1m0s
+  interval: 30m
   releaseName: traefik
   storageNamespace: traefik
   targetNamespace: traefik

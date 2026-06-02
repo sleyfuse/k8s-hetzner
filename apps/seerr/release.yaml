@@ -13,10 +13,9 @@ spec:
         kind: HelmRepository
         name: seerr
         namespace: flux-system
-      interval: 30m
   install:
     createNamespace: true
-  interval: 1m0s
+  interval: 30m
   releaseName: seerr
   storageNamespace: media
   targetNamespace: media

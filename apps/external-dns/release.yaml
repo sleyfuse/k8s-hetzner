@@ -13,13 +13,12 @@ spec:
         kind: HelmRepository
         name: external-dns
         namespace: flux-system
-        interval: 30m
   valuesFrom:
     - kind: ConfigMap
       name: external-dns-values
   install:
     createNamespace: true
-  interval: 1m0s
+  interval: 30m
   releaseName: external-dns
   storageNamespace: external-dns
   targetNamespace: external-dns

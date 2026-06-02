@@ -13,10 +13,9 @@ spec:
         kind: HelmRepository
         name: cert-manager-webhook-hetzner
         namespace: flux-system
-      interval: 30m
   install:
     createNamespace: true
-  interval: 1m0s
+  interval: 30m
   releaseName: cert-manager-webhook-hetzner
   storageNamespace: cert-manager
   targetNamespace: cert-manager

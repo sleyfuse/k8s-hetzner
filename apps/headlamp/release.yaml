@@ -16,7 +16,7 @@ spec:
   upgrade:
     disableTakeOwnership: false
     force: true
-  interval: 1m0s
+  interval: 30m
   releaseName: headlamp
   storageNamespace: kube-system
   targetNamespace: kube-system
