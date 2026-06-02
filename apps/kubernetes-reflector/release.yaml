@@ -9,12 +9,10 @@ spec:
   chart:
     spec:
       chart: reflector
-      version: "10.0.46"
       sourceRef:
         kind: HelmRepository
         name: emberstack
         namespace: flux-system
-
   releaseName: kubernetes-reflector
   install:
     createNamespace: true

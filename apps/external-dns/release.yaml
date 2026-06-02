@@ -13,7 +13,6 @@ spec:
         kind: HelmRepository
         name: external-dns
         namespace: flux-system
-      version: "1.21.1"
   valuesFrom:
     - kind: ConfigMap
       name: external-dns-values

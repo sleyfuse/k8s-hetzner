@@ -13,7 +13,6 @@ spec:
         kind: HelmRepository
         name: traefik
         namespace: flux-system
-      version: "40.2.0"
   valuesFrom:
     - kind: ConfigMap
       name: traefik-values
