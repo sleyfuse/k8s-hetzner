@@ -13,9 +13,21 @@ spec:
         kind: HelmRepository
         name: cert-manager
         namespace: flux-system
+      interval: 5m
   install:
     createNamespace: true
     crds: CreateReplace
+    remediation:
+      retries: 2
+  upgrade:
+    remediation:
+      retries: 2
+  driftDetection:
+    mode: enabled
+    ignore:
+      - paths: ["/spec/replicas"]
+        target:
+          kind: Deployment
   interval: 1m0s
   releaseName: cert-manager
   storageNamespace: cert-manager
