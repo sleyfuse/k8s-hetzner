@@ -21,7 +21,7 @@ spec:
             - name: DATABASE_TYPE
               value: "postgresql"
             - name: DATABASE_URL
-              value: "app:CB61TMnLzTYreWdCaEwYQiugNnEJJ79gRdpfoCt2o2yZjP5poLMTTpV2L6N0vFxP@postgresql-rw.default.svc.cluster.local:5432/comet"
+              value: "app:8HPc6Q8ikF8FI1EKNuWId8uAtsPdQqZZt5miMt6SipJqggyyd5UzYQ4qpLNzDjEw@postgresql-rw.infra.svc.cluster.local:5432/comet"
             - name: TZ
               value: "Europe/Helsinki"
             - name: ADMIN_DASHBOARD_PASSWORD
