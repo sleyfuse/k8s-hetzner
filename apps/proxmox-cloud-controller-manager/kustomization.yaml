@@ -1,20 +1,19 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-- repo.yaml
-- release.yaml
-- ghcr.yaml
-- kustomizeconfig.yaml
-- values.yaml
-configMapGenerator:
-- files:
+  - repo.yaml
+  - release.yaml
+  - ghcr.yaml
   - values.yaml
-  name: proxmox-cloud-controller-manager-values
-  namespace: flux-system
-  options:
-    labels:
-      reconcile.fluxcd.io/watch: Enabled
+configMapGenerator:
+  - files:
+      - values.yaml
+    name: proxmox-cloud-controller-manager-values
+    namespace: flux-system
+    options:
+      labels:
+        reconcile.fluxcd.io/watch: Enabled
 configurations:
-- kustomizeconfig.yaml
+  - kustomizeconfig.yaml
 generatorOptions:
   disableNameSuffixHash: true
