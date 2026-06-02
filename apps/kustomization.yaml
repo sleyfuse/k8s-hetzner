@@ -2,30 +2,31 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - cert-manager
-  - external-dns
-  - cert-manager-webhook-hetzner
-  - headlamp
-  - proxmox-cloud-controller-manager
-  - proxmox-csi-plugin
-  - node-feature-discovery
-  - intel-device-plugins-operator
-  - intel-device-plugins-gpu
-  - homepage
-  - traefik
-  - traefik-forward-auth
-  - keycloak
-  - kubernetes-reflector
-  - fuse-device-plugin
-  - plex
-  - decypharr
-  - local-path-provisioner
-  - sonarr
-  - radarr
-  - prowlarr
-  - profilarr
-  - byparr
-  - pgsql
-  - zilean
-  - comet
-  - seerr
+- byparr
+- cert-manager
+- cert-manager-webhook-hetzner
+- comet
+- decypharr
+- external-dns
+- fuse-device-plugin
+- headlamp
+- homepage
+- intel-device-plugins-gpu
+- intel-device-plugins-operator
+- keycloak
+- kubernetes-reflector
+- local-path-provisioner
+- node-feature-discovery
+- pgsql
+- plex
+- profilarr
+- prowlarr
+- proxmox-cloud-controller-manager
+- proxmox-csi-plugin
+- radarr
+- seerr
+- sonarr
+- tautulli
+- traefik
+- traefik-forward-auth
+- zilean
