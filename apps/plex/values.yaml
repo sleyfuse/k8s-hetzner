@@ -1,5 +1,5 @@
 pms:
-  configStorage: 10Gi
+  configStorage: 16Gi
   resources:
     requests:
       gpu.intel.com/xe: "1"
