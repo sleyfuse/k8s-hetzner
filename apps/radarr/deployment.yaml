@@ -13,8 +13,16 @@ spec:
         app: radarr
       namespace: media
     spec:
-      nodeSelector:
-        kubernetes.io/hostname: worker1
+      affinity:
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - topologyKey: kubernetes.io/hostname
+              labelSelector:
+                matchExpressions:
+                  - key: group
+                    operator: In
+                    values:
+                      - realdebrid
       containers:
         - name: radarr
           securityContext:

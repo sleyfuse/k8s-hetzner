@@ -9,6 +9,16 @@ pms:
       nextflow.io/fuse: "1"
   securityContext:
     privileged: true
+  affinity:
+  podAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      - topologyKey: kubernetes.io/hostname
+        labelSelector:
+          matchExpressions:
+            - key: group
+              operator: In
+              values:
+                - realdebrid
 extraInitContainers:
   - name: init-sysctl
     image: busybox:latest
