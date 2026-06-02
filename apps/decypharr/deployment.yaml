@@ -15,6 +15,7 @@ spec:
     metadata:
       labels:
         app: decypharr
+        group: realdebrid
       namespace: media
     spec:
       nodeSelector:
