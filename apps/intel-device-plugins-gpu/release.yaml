@@ -13,6 +13,7 @@ spec:
         kind: HelmRepository
         name: intel
         namespace: flux-system
+      interval: 30m
   install:
     createNamespace: true
   interval: 1m0s

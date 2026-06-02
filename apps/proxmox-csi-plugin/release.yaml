@@ -13,6 +13,7 @@ spec:
         kind: HelmRepository
         name: proxmox-csi-plugin
         namespace: flux-system
+      interval: 30m
   valuesFrom:
     - kind: ConfigMap
       name: proxmox-csi-plugin-values

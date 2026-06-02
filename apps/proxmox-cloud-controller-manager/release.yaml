@@ -13,6 +13,7 @@ spec:
         kind: HelmRepository
         name: proxmox-cloud-controller-manager
         namespace: flux-system
+      interval: 30m
   valuesFrom:
     - kind: ConfigMap
       name: proxmox-cloud-controller-manager-values

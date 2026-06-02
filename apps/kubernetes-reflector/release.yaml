@@ -13,6 +13,7 @@ spec:
         kind: HelmRepository
         name: emberstack
         namespace: flux-system
+      interval: 30m
   releaseName: kubernetes-reflector
   install:
     createNamespace: true
