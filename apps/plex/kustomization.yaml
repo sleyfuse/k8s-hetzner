@@ -1,20 +1,22 @@
----
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - namespace.yaml
-  - repo.yaml
-  - release.yaml
-  - secret.yaml
+- namespace.yaml
+- repo.yaml
+- release.yaml
+- secret.yaml
+- kustomizeconfig.yaml
+- out.yaml
+- values.yaml
 configMapGenerator:
-  - name: plex-values
-    namespace: flux-system
-    files:
-      - values.yaml
-    options:
-      labels:
-        reconcile.fluxcd.io/watch: "Enabled"
+- files:
+  - values.yaml
+  name: plex-values
+  namespace: flux-system
+  options:
+    labels:
+      reconcile.fluxcd.io/watch: Enabled
 configurations:
-  - kustomizeconfig.yaml
+- kustomizeconfig.yaml
 generatorOptions:
   disableNameSuffixHash: true
