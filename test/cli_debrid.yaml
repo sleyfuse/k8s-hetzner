@@ -32,3 +32,24 @@ spec:
       containers:
         - name: cli_debrid
           image: godver3/cli_debrid:dev
+          ports:
+            - containerPort: 5000
+            - containerPort: 5001
+            - containerPort: 8888
+          volumeMounts:
+            - name: rclone-debrid-pvc
+              mountPath: /mnt
+            - name: cli-debrid-pvc
+              mountPath: /app/data
+          resources:
+            requests:
+              nextflow.io/fuse: "1"
+            limits:
+              nextflow.io/fuse: "1"
+      volumes:
+        - name: cli-debrid-pvc
+          persistentVolumeClaim:
+            claimName: pvc-debrid
+        - name: rclone-debrid-pvc
+          persistentVolumeClaim:
+            claimName: pvc-debrid
