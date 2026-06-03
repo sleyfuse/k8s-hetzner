@@ -49,6 +49,16 @@ spec:
             - name: "DOWNLOAD_DIRS"
               value: "/mnt/downloads"
           ports:
-            - containerPort: 8191
+            - containerPort: 8284
               name: http
               protocol: TCP
+          volumeMounts:
+            - name: decypharr-config
+              mountPath: "/decypharr"
+            - name: "radarr-config"
+              mountPath: "/arr-configs/radarr"
+            - name: "sonarr-config"
+              mountPath: "/arr-configs/sonarr"
+            - name: mediamount
+              mountPath: /mnt
+              mountPropagation: HostToContainer
