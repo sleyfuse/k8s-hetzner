@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cli-tools-deployment
+  namespace: media
+  labels:
+    app: cli-tools
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cli-tools
+  template:
+    metadata:
+      labels:
+        app: cli-tools
+    spec:
+      containers:
+        - name: toolkit
+          image: infoblox/dnstools:latest
+          command: ["/bin/sh", "-c"]
+          args:
+            - |
+              while true; do
+                sleep 3600;
+              done
+          volumeMounts:
+            - name: rclone-debrid-pvc
+              mountPath: /mnt
+      volumes:
+        - name: rclone-debrid-pvc
+          persistentVolumeClaim:
+            claimName: pvc-debrid
