@@ -1,0 +1,25 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: csi-driver-rclone
+  namespace: flux-system
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: csi-driver-rclone
+      sourceRef:
+        kind: HelmRepository
+        name: veloxpack
+        namespace: flux-system
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: veloxpack
+  namespace: flux-system
+spec:
+  interval: 1h
+  url: oci://ghcr.io/veloxpack/charts
+  type: oci
