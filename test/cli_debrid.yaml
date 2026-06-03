@@ -62,7 +62,6 @@ spec:
         - name: fuse
           hostPath:
             path: /dev/fuse
-            type: File
         - name: rclone-debrid-pvc
           persistentVolumeClaim:
             claimName: pvc-debrid
