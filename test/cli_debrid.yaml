@@ -35,6 +35,8 @@ spec:
       containers:
         - name: clidebrid
           image: godver3/cli_debrid:dev
+          securityContext:
+            privileged: true
           ports:
             - containerPort: 5000
             - containerPort: 5001
@@ -46,6 +48,8 @@ spec:
               mountPath: /app/data
             - name: symlink-pvc
               mountPath: /media
+            - name: fuse
+              mountPath: /dev/fuse
           resources:
             requests:
               nextflow.io/fuse: "1"
@@ -55,6 +59,10 @@ spec:
         - name: cli-debrid-pvc
           persistentVolumeClaim:
             claimName: cli-debrid
+        - name: fuse
+          hostPath:
+            path: /dev/fuse
+            type: File
         - name: rclone-debrid-pvc
           persistentVolumeClaim:
             claimName: pvc-debrid
