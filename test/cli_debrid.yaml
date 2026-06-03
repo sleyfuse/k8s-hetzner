@@ -41,6 +41,8 @@ spec:
               mountPath: /mnt
             - name: cli-debrid-pvc
               mountPath: /app/data
+            - name: symlink-pvc
+              mountPath: /media
           resources:
             requests:
               nextflow.io/fuse: "1"
@@ -53,3 +55,32 @@ spec:
         - name: rclone-debrid-pvc
           persistentVolumeClaim:
             claimName: pvc-debrid
+        - name: symlink-pvc
+          persistentVolumeClaim:
+            claimName: pvc-debrid
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-debrid
+  namespace: media
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: rclone-debrid
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-debrid
+  namespace: media
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: rclone-debrid
