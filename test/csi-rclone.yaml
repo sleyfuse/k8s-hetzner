@@ -13,6 +13,9 @@ spec:
         kind: HelmRepository
         name: veloxpack
         namespace: flux-system
+  releaseName: csi-driver-rclone
+  targetNamespace: media
+  storageNamespace: media
 ---
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository

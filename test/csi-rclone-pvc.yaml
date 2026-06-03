@@ -1,0 +1,41 @@
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: rclone-debrid
+  namespace: media
+provisioner: rclone.csi.veloxpack.io
+parameters:
+  remote: "zurg"
+  csi.storage.k8s.io/node-publish-secret-name: "rclone-debrid-secret"
+  csi.storage.k8s.io/node-publish-secret-namespace: "media"
+reclaimPolicy: Delete
+volumeBindingMode: Immediate
+allowVolumeExpansion: true
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: rclone-debrid-secret
+  namespace: media
+type: Opaque
+stringData:
+  configData: |
+    [zurg]
+    type = webdav
+    url = http://zurg:9999/dav
+    vendor = other
+    pacer_min_sleep = 0
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-debrid
+  namespace: media
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: rclone-debrid
