@@ -32,7 +32,7 @@ spec:
             - containerPort: 9999
           volumeMounts:
             - name: zurg-config
-              mountPath: /config.yml
+              mountPath: /app/config.yml
               subPath: config.yml
             - name: zurg-data
               mountPath: /app/data
