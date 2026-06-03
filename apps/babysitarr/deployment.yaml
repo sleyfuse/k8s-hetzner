@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: babysitarr
+  labels:
+    app: babysitarr
+  namespace: media
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: babysitarr
+  template:
+    metadata:
+      labels:
+        app: babysitarr
+      namespace: media
+    spec:
+      containers:
+        - name: babysitarr
+          image: babysitarr
+          env:
+            - name: "RADARR"
+              value: "radarr|radarr|radarr|7878|"
+            - name: "SONARR"
+              value: "sonarr|sonarr|sonarr|8989|"
+            - name: "DECYPHARR_URL"
+              value: "http://decypharr:8282"
+            - name: "DECYPHARR_STATE"
+              value: "/decypharr/torrents.json"
+            - name: "WEB_PORT"
+              value: "8284"
+            - name: "MAX_WORKERS"
+              value: "3"
+            - name: "TZ"
+              value: "Europe/Helsinki"
+            - name: "CHECK_INTERVAL"
+              value: "120"
+            - name: "RD_API_KEY"
+              value: ""
+            - name: "STUCK_DOWNLOAD_TIMEOUT"
+              value: "600"
+            - name: "LOOP_THRESHOLD"
+              value: "5"
+            - name: "IMPORT_STALL_TIMEOUT"
+              value: "300"
+            - name: "STUCK_QUEUE_TIMEOUT"
+              value: "1800"
+            - name: "DOWNLOAD_DIRS"
+              value: "/mnt/downloads"
+          ports:
+            - containerPort: 8191
+              name: http
+              protocol: TCP
