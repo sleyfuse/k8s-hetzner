@@ -29,13 +29,23 @@ spec:
             - 9999:9999
           volumeMounts:
             - name: zurg-config
-              mountPath: /app/config
+              mountPath: /app/config/config.yml
+              subPath: config.yml
             - name: zurg-data
               mountPath: /app/data
       volumes:
         - name: zurg-config
           configMap:
             name: zurg-config
-
         - name: zurg-data
           emptyDir: {}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: zurg-config
+  namespace: media
+data:
+  config.yml: |
+    # Zurg configuration
+    port: 9999
