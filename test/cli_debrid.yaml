@@ -1,0 +1,34 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cli_debrid
+  namespace: media
+spec:
+  selector:
+    app: cli_debrid
+  ports:
+    - port: 5000
+      targetPort: 5000
+    - port: 5001
+      targetPort: 5001
+    - port: 8888
+      targetPort: 8888
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cli_debrid
+  namespace: media
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cli_debrid
+  template:
+    metadata:
+      labels:
+        app: cli_debrid
+    spec:
+      containers:
+        - name: cli_debrid
+          image: godver3/cli_debrid:dev
