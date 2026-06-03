@@ -27,6 +27,11 @@ spec:
           volumeMounts:
             - name: rclone-debrid-pvc
               mountPath: /mnt
+          resources:
+            requests:
+              nextflow.io/fuse: "1"
+            limits:
+              nextflow.io/fuse: "1"
       volumes:
         - name: rclone-debrid-pvc
           persistentVolumeClaim:
