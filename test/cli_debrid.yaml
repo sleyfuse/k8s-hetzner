@@ -1,36 +1,39 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: cli_debrid
+  name: clidebrid
   namespace: media
 spec:
   selector:
-    app: cli_debrid
+    app: clidebrid
   ports:
     - port: 5000
       targetPort: 5000
+      name: port1
     - port: 5001
       targetPort: 5001
+      name: port2
     - port: 8888
       targetPort: 8888
+      name: port3
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cli_debrid
+  name: clidebrid
   namespace: media
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: cli_debrid
+      app: clidebrid
   template:
     metadata:
       labels:
-        app: cli_debrid
+        app: clidebrid
     spec:
       containers:
-        - name: cli_debrid
+        - name: clidebrid
           image: godver3/cli_debrid:dev
           ports:
             - containerPort: 5000
@@ -51,18 +54,31 @@ spec:
       volumes:
         - name: cli-debrid-pvc
           persistentVolumeClaim:
-            claimName: pvc-debrid
+            claimName: cli-debrid
         - name: rclone-debrid-pvc
           persistentVolumeClaim:
             claimName: pvc-debrid
         - name: symlink-pvc
           persistentVolumeClaim:
-            claimName: pvc-debrid
+            claimName: symlink
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: pvc-debrid
+  name: cli-debrid
+  namespace: media
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: proxmox-data-xfs
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: symlink
   namespace: media
 spec:
   accessModes:
@@ -70,17 +86,4 @@ spec:
   resources:
     requests:
       storage: 10Gi
-  storageClassName: rclone-debrid
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: pvc-debrid
-  namespace: media
-spec:
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 10Gi
-  storageClassName: rclone-debrid
+  storageClassName: local-path
