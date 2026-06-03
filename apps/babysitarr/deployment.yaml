@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: babysitarr
-          image: babysitarr
+          image: daalves/babysitarr:latest
           env:
             - name: "RADARR"
               value: "radarr|radarr|radarr|7878|"
@@ -53,6 +53,8 @@ spec:
               name: http
               protocol: TCP
           volumeMounts:
+            - name: babysitarr-config
+              mountPath: "/data"
             - name: decypharr-config
               mountPath: "/decypharr"
             - name: "radarr-config"
