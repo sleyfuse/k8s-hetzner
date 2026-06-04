@@ -31,7 +31,19 @@ spec:
 apiVersion: valkey.io/v1alpha1
 kind: ValkeyCluster
 metadata:
-  name: my-cluster
+  name: valkey
+  namespace: infra
 spec:
-  shards: 3
-  replicas: 1
+  shards: 1
+  replicas: 0
+  config:
+    io-threads: 4
+    maxmemory-policy: noeviction
+  users:
+    - name: app
+      nopass: true
+      permissions: "+@all ~* &*"
+  persistence:
+    size: 10Gi
+    storageClass: proxmox-csi-xfs
+    reclaimPolicy: Retain
