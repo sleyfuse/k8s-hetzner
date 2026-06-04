@@ -89,3 +89,29 @@ spec:
           port: 3000
   tls:
     secretName: alixroden-co-uk-tls
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: aiostreams-config
+  namespace: media
+  labels:
+    app: aiostreams
+data:
+  BASE_URL: "https://aiostreams.media.alixroden.com"
+  SECRET_KEY: "a03b8f7ba8ba4b0eae9a4f8c0882969b3be8b81e289c8a8e1091017d2f2e45e2"
+  DATABASE_URI: "postgres://app:6WcQS7IvEm988NeNvAvImWDnEyB6mKjXWAUUymLNRmUYiW765mp6VDmUIJNdvfSk@postgresql-rw.infra.svc.cluster.local:5432/aiostreams"
+  INTERNAL_URL: "http://aiostreams:3000"
+  AIOSTREAMS_AUTH: "admin:KXX14cdup$"
+  AIOSTREAMS_AUTH_ADMINS: "admin"
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Database
+metadata:
+  name: aiostreams-db
+  namespace: infra
+spec:
+  name: aiostreams
+  owner: app
+  cluster:
+    name: postgresql
