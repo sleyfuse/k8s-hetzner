@@ -14,9 +14,6 @@ spec:
       services:
         - name: comet
           port: 8000
-      middlewares:
-        - name: traefik-forward-auth
-          namespace: traefik
   ingressClassName: traefik
   tls:
     secretName: alixroden-co-uk-tls
