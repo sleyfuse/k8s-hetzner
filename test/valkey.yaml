@@ -45,5 +45,5 @@ spec:
       permissions: "+@all ~* &*"
   persistence:
     size: 10Gi
-    storageClassName: proxmox-csi-xfs
+    storageClassName: proxmox-data-xfs
     reclaimPolicy: Retain

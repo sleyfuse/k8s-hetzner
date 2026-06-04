@@ -39,6 +39,8 @@ spec:
           env:
             - name: BASE_URL
               value: ${BASE_URL}
+            - name: REDIS_URI
+              value: redis://valkey.infra.svc.cluster.local:6379
             - name: SECRET_KEY
               value: ${SECRET_KEY}
             - name: DATABASE_URI
