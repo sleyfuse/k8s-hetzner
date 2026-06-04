@@ -39,3 +39,25 @@ spec:
     requests:
       storage: 10Gi
   storageClassName: rclone-debrid
+  volumeName: pv-debrid
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-debrid
+  namespace: media
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteMany
+  csi:
+    driver: rclone.csi.veloxpack.io
+    volumeHandle: pv-debrid
+    volumeAttributes:
+      remote: "zurg"
+  mountOptions:
+    - allow-other
+    - allow-non-empty
+    - dir-cache-time=10s
+    - vfs-cache-mode=full
