@@ -32,6 +32,16 @@ spec:
             - name: zilean-tmp
               mountPath: /tmp
           tty: true
+        - name: socat
+          image: alpine/socat:latest
+          command:
+            [
+              "socat",
+              "TCP4-LISTEN:5432,fork",
+              "TCP:postgresql-rw.infra.svc.cluster.local:5432",
+            ]
+          ports:
+            - containerPort: 5432
       volumes:
         - name: zilean-data
           persistentVolumeClaim:
