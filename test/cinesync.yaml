@@ -78,8 +78,8 @@ spec:
               name: cinesync-data
             - name: fuse
               mountPath: /dev/fuse
-            - mountPath: /mnt
-              name: mediamount
+            - name: mediamount
+              mountPath: /mnt
               mountPropagation: HostToContainer
           resources:
             requests:
