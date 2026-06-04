@@ -22,9 +22,9 @@ spec:
         tty: true
         env:
           - name: "TORBOX_API_KEY"
-            value: "<input your api key>"
+            value: "f8a9fd3a-c131-438e-a627-87a7555ff64a"
           - name: "MOUNT_METHOD"
-            value: "strm"
+            value: "fuse"
           - name: "MOUNT_PATH"
             value: "/torbox"
           - name: "RAW_MODE"
@@ -36,6 +36,7 @@ spec:
         volumeMounts:
           - name: torbox-pvc
             mountPath: /torbox
+            mountPropagation: Bidirectional
           - name: symlink-pvc
             mountPath: /media
           - name: fuse
