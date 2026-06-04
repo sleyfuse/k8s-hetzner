@@ -121,7 +121,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: clidebrid-db
+  name: cli-debrid-db
   namespace: media
 spec:
   accessModes:
@@ -134,7 +134,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: clidebrid-phalanx
+  name: cli-debrid-phalanx
   namespace: media
 spec:
   accessModes:
