@@ -64,6 +64,9 @@ data:
       - name: wg-conf
         secret:
           secretName: wg-conf
+      - name: mediamount
+        persistentVolumeClaim:
+          claimName: media-pvc
     extraVolumeMounts:
       - mountPath: /mnt
         name: mediamount
