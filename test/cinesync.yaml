@@ -1,0 +1,33 @@
+services:
+  cinesync:
+    image: sureshfizzy/cinesync:latest
+    container_name: cinesync
+    restart: unless-stopped
+    ports:
+      - "5173:5173" # Web Interface
+      - "8082:8082" # API & WebDAV
+    environment:
+      - PUID=1000 # Set to your user ID
+      - PGID=1000 # Set to your group ID
+      - TZ=UTC # Set your timezone
+    volumes:
+      # Configuration and database
+      - ./db:/app/db
+      - /home:/home
+      - /mnt:/mnt
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: cinesync
+  namespace: media
+spec:
+  selector:
+    app: cinesync
+  ports:
+    - name: web
+      port: 5173
+      targetPort: 5173
+    - name: api
+      port: 8082
+      targetPort: 8082
