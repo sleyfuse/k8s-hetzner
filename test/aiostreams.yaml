@@ -69,6 +69,16 @@ spec:
                 configMapKeyRef:
                   name: aiostreams-config
                   key: PORT
+            - name: SEL_SYNC_ACCESS
+              valueFrom:
+                configMapKeyRef:
+                  name: aiostreams-config
+                  key: SEL_SYNC_ACCESS
+            - name: REGEX_FILTER_ACCESS
+              valueFrom:
+                configMapKeyRef:
+                  name: aiostreams-config
+                  key: REGEX_FILTER_ACCESS
             - name: NODE_ENV
               valueFrom:
                 configMapKeyRef:
@@ -137,6 +147,8 @@ data:
   SYSTEM_LIFECYCLE_ENABLED: "false"
   PORT: "3000"
   NODE_ENV: "production"
+  SEL_SYNC_ACCESS: "all"
+  REGEX_FILTER_ACCESS: "all"
 ---
 apiVersion: postgresql.cnpg.io/v1
 kind: Database
