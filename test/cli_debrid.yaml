@@ -32,6 +32,16 @@ spec:
       labels:
         app: clidebrid
     spec:
+      affinity:
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - topologyKey: kubernetes.io/hostname
+              labelSelector:
+                matchExpressions:
+                  - key: group
+                    operator: In
+                    values:
+                      - realdebrid
       containers:
         - name: clidebrid
           image: godver3/cli_debrid:dev
