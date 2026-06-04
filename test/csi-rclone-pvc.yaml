@@ -38,7 +38,7 @@ spec:
   resources:
     requests:
       storage: 10Gi
-  storageClassName: rclone-debrid
+  storageClassName: ""
   volumeName: pv-debrid
 ---
 apiVersion: v1
