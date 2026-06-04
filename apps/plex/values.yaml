@@ -59,9 +59,15 @@ extraVolumes:
   - name: mediamount
     persistentVolumeClaim:
       claimName: media-pvc
+  - name: torbox
+    persistentVolumeClaim:
+      claimName: pvc-torbox
 extraVolumeMounts:
   - mountPath: /mnt
     name: mediamount
+    mountPropagation: HostToContainer
+  - mountPath: /torbox
+    name: torbox
     mountPropagation: HostToContainer
 extraEnv:
   PLEX_UID: "1000"

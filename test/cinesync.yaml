@@ -57,7 +57,7 @@ spec:
             - name: "TMDB_API_KEY"
               value: "ae27e67e1e4750c5fb9bb473d342dc13"
             - name: "SOURCE_DIR"
-              value: "/mnt/decypharr/__all__"
+              value: "/torbox"
             - name: "DESTINATION_DIR"
               value: "/mnt/cinesync"
             - name: "CINESYNC_IP"
@@ -88,6 +88,9 @@ spec:
               name: cinesync-data
             - name: fuse
               mountPath: /dev/fuse
+            - name: torbox
+              mountPath: /torbox
+              mountPropagation: HostToContainer
             - name: mediamount
               mountPath: /mnt
               mountPropagation: HostToContainer
@@ -100,6 +103,9 @@ spec:
         - name: cinesync-data
           persistentVolumeClaim:
             claimName: cinesync-data
+        - name: torbox
+          persistentVolumeClaim:
+            claimName: pvc-torbox
         - name: mediamount
           persistentVolumeClaim:
             claimName: media-pvc

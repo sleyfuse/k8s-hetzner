@@ -25,14 +25,16 @@ spec:
     - ReadWriteMany
   csi:
     driver: rclone.csi.veloxpack.io
-    volumeHandle: pv-debrid
+    volumeHandle: pv-torbox
     volumeAttributes:
       remote: "torbox"
       remotePath: ""
       configData: |
         [torbox]
         type = webdav
-        url = http://torbox:9999/dav
+        url = http://webdav.torbox.app
+        user = aroden95@proton.me
+        pass = KXX14cdup$
         vendor = other
         pacer_min_sleep = 0
   mountOptions:
