@@ -111,7 +111,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`aiostreams.media.alixroden.com`)
+    - match: Host(`aiostreams.alixroden.co.uk`)
       kind: Rule
       services:
         - name: aiostreams
@@ -127,7 +127,7 @@ metadata:
   labels:
     app: aiostreams
 data:
-  BASE_URL: "https://aiostreams.media.alixroden.com"
+  BASE_URL: "https://aiostreams.alixroden.co.uk"
   SECRET_KEY: "9f910a7ba92ba8204a9bfe628e82742aced6b2d72244ed5b04183de1024da6c5"
   DATABASE_URI: "postgres://app:6WcQS7IvEm988NeNvAvImWDnEyB6mKjXWAUUymLNRmUYiW765mp6VDmUIJNdvfSk@postgresql-rw.infra.svc.cluster.local:5432/aiostreams"
   INTERNAL_URL: "http://aiostreams:3000"
