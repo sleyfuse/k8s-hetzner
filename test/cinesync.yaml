@@ -32,6 +32,16 @@ spec:
       labels:
         app: cinesync
     spec:
+      affinity:
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - topologyKey: kubernetes.io/hostname
+              labelSelector:
+                matchExpressions:
+                  - key: group
+                    operator: In
+                    values:
+                      - realdebrid
       containers:
         - image: sureshfizzy/cinesync:latest
           name: cinesync
