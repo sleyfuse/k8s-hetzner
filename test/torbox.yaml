@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: torbox-media-center
+  namespace: media
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: torbox-media-center
+  template:
+    metadata:
+      labels:
+        app: torbox-media-center
+    spec:
+    containers:
+      - name: torbox-media-center
+        image: anonymoussystems/torbox-media-center:main
+        securityContext:
+          privileged: true
+        stdin: true
+        tty: true
+        env:
+          - name: "TORBOX_API_KEY"
+            value: "<input your api key>"
+          - name: "MOUNT_METHOD"
+            value: "strm"
+          - name: "MOUNT_PATH"
+            value: "/torbox"
+          - name: "RAW_MODE"
+            value: "false"
+          - name: "ENABLE_METADATA"
+            value: "false"
+          - name: "MOUNT_REFRESH_TIME"
+            value: "slow"
+        volumeMounts:
+          - name: torbox-pvc
+            mountPath: /torbox
+          - name: symlink-pvc
+            mountPath: /media
+          - name: fuse
+            mountPath: /dev/fuse
+        resources:
+          requests:
+            nextflow.io/fuse: "1"
+          limits:
+            nextflow.io/fuse: "1"
+    volumes:
+      - name: fuse
+        hostPath:
+          path: /dev/fuse
+      - name: symlink-pvc
+        persistentVolumeClaim:
+          claimName: symlink
+      - name: torbox-pvc
+        hostPath:
+          path: /torbox
