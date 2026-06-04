@@ -33,12 +33,28 @@ spec:
           volumeMounts:
             - name: aiostreams-data
               mountPath: /app/data
+          envFrom:
+            - configMapRef:
+                name: aiostreams-config
           env:
-            - name: ENV_VAR
-              valueFrom:
-                secretKeyRef:
-                  name: name
-                  key: key
+            - name: BASE_URL
+              value: ${BASE_URL}
+            - name: SECRET_KEY
+              value: ${SECRET_KEY}
+            - name: DATABASE_URI
+              value: ${DATABASE_URI}
+            - name: INTERNAL_URL
+              value: ${INTERNAL_URL}
+            - name: SYSTEM_LIFECYCLE_ENABLED
+              value: "false"
+            - name: PORT
+              value: "3000"
+            - name: NODE_ENV
+              value: "production"
+            - name: AIOSTREAMS_AUTH
+              value: ${AIOSTREAMS_AUTH}
+            - name: AIOSTREAMS_AUTH_ADMINS
+              value: ${AIOSTREAMS_AUTH_ADMINS}
       volumes:
         - name: aiostreams-data
           persistentVolumeClaim:
