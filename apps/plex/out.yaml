@@ -1,0 +1,139 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: media
+---
+apiVersion: v1
+data:
+  values.yaml: |
+    pms:
+      configStorage: 16Gi
+      resources:
+        requests:
+          gpu.intel.com/xe: "1"
+          nextflow.io/fuse: "1"
+        limits:
+          gpu.intel.com/xe: "1"
+          nextflow.io/fuse: "1"
+      securityContext:
+        privileged: true
+      affinity:
+      podAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          - topologyKey: kubernetes.io/hostname
+            labelSelector:
+              matchExpressions:
+                - key: group
+                  operator: In
+                  values:
+                    - realdebrid
+    extraInitContainers:
+      - name: init-sysctl
+        image: busybox:latest
+        command:
+          - sh
+          - -c
+          - |
+            # Enable IP forwarding inside the pod network namespace
+            sysctl -w net.ipv4.ip_forward=1
+            sysctl -w net.ipv6.conf.all.forwarding=1
+        securityContext:
+          privileged: true
+    extraContainers:
+      - image: linuxserver/wireguard:latest
+        restartPolicy: Always
+        name: wireguard
+        env:
+          - name: TZ
+            value: "Europe/Helsinki"
+          - name: PUID
+            value: "1000"
+          - name: PGID
+            value: "1000"
+        volumeMounts:
+          - name: wg-conf
+            mountPath: /etc/wireguard/
+            readOnly: false
+        securityContext:
+          privileged: true
+          capabilities:
+            add:
+              - NET_ADMIN
+              - SYS_MODULE
+    extraVolumes:
+      - name: wg-conf
+        secret:
+          secretName: wg-conf
+      - name: rclone-debrid-pvc
+        persistentVolumeClaim:
+          claimName: pvc-debrid
+      - name: symlink-pvc
+        persistentVolumeClaim:
+          claimName: symlink
+    extraVolumeMounts:
+      - name: rclone-debrid-pvc
+        mountPath: /mnt
+      - name: symlink-pvc
+        mountPath: /media
+    extraEnv:
+      PLEX_UID: "1000"
+      PLEX_GID: "1000"
+      PLEX_CLAIM: "claim-CNc19oQfrQXy98s9hnwF"
+kind: ConfigMap
+metadata:
+  labels:
+    reconcile.fluxcd.io/watch: Enabled
+  name: plex-values
+  namespace: flux-system
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: wg-conf
+  namespace: media
+stringData:
+  wg0.conf: |
+    [Interface]
+    Address = 10.5.0.2/24
+    ListenPort = 51820
+    PrivateKey = IIo2HaqHvptf4A/oTupHzz/uaN3J1PkTUynks0YO3VY=
+    PostUp = ip rule add to 10.42.0.0/16 lookup main priority 5; ip rule add to 10.43.0.0/16 lookup main priority 5
+    PreDown = ip rule del to 10.42.0.0/16 lookup main priority 5; ip rule del to 10.43.0.0/16 lookup main priority 5
+
+    [Peer]
+    PublicKey = IEfKWzQ52F81a7WtRp55PuTDHX6O2pAhYNwrapYaxxE=
+    AllowedIPs = 0.0.0.0/0, ::/0
+    Endpoint = wireguard.alixroden.co.uk:51820
+type: Opaque
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: plex
+  namespace: flux-system
+spec:
+  chart:
+    spec:
+      chart: plex-media-server
+      sourceRef:
+        kind: HelmRepository
+        name: plex
+        namespace: flux-system
+  install:
+    createNamespace: true
+  interval: 30m
+  releaseName: plex
+  storageNamespace: media
+  targetNamespace: media
+  valuesFrom:
+  - kind: ConfigMap
+    name: plex-values
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: plex
+  namespace: flux-system
+spec:
+  interval: 1h
+  url: https://raw.githubusercontent.com/plexinc/pms-docker/gh-pages
