@@ -56,17 +56,10 @@ extraVolumes:
   - name: wg-conf
     secret:
       secretName: wg-conf
-  - name: rclone-debrid-pvc
-    persistentVolumeClaim:
-      claimName: pvc-debrid
-  - name: symlink-pvc
-    persistentVolumeClaim:
-      claimName: symlink
 extraVolumeMounts:
-  - name: rclone-debrid-pvc
-    mountPath: /mnt
-  - name: symlink-pvc
-    mountPath: /media
+  - mountPath: /mnt
+    name: mediamount
+    mountPropagation: HostToContainer
 extraEnv:
   PLEX_UID: "1000"
   PLEX_GID: "1000"
