@@ -48,11 +48,19 @@ spec:
             - containerPort: 5000
             - containerPort: 5001
             - containerPort: 8888
+          tty: true
+          stdin: true
           volumeMounts:
             - name: rclone-debrid-pvc
               mountPath: /mnt
+            - name: cli-debrid-db
+              mountPath: /user/db_content
+            - name: cli-debrid-phalanx
+              mountPath: /app/phalanx_db_hyperswarm/autobase_storage_v4
             - name: cli-debrid-pvc
-              mountPath: /app/data
+              mountPath: /user/config
+            - name: cli-debrid-logs
+              mountPath: /user/logs
             - name: symlink-pvc
               mountPath: /media
             - name: fuse
@@ -69,12 +77,20 @@ spec:
         - name: fuse
           hostPath:
             path: /dev/fuse
+        - name: cli-debrid-phalanx
+          persistentVolumeClaim:
+            claimName: cli-debrid-phalanx
+        - name: cli-debrid-db
+          persistentVolumeClaim:
+            claimName: cli-debrid-db
         - name: rclone-debrid-pvc
           persistentVolumeClaim:
             claimName: pvc-debrid
         - name: symlink-pvc
           persistentVolumeClaim:
             claimName: symlink
+        - name: cli-debrid-logs
+          emptyDir: {}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -93,6 +109,32 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: symlink
+  namespace: media
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: local-path
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: clidebrid-db
+  namespace: media
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: local-path
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: clidebrid-phalanx
   namespace: media
 spec:
   accessModes:
