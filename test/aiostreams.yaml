@@ -1,0 +1,75 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: aiostreams
+  namespace: media
+spec:
+  selector:
+    app: aiostreams
+  ports:
+    - port: 3000
+      targetPort: 3000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aiostreams
+  namespace: media
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: aiostreams
+  template:
+    metadata:
+      labels:
+        app: aiostreams
+    spec:
+      containers:
+        - name: aiostreams
+          image: ghcr.io/viren070/aiostreams:latest
+          ports:
+            - containerPort: 3000
+          volumeMounts:
+            - name: aiostreams-data
+              mountPath: /app/data
+          env:
+            - name: ENV_VAR
+              valueFrom:
+                secretKeyRef:
+                  name: name
+                  key: key
+      volumes:
+        - name: aiostreams-data
+          persistentVolumeClaim:
+            claimName: pvc-aiostreams
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-aiostreams
+  namespace: media
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: rclone-debrid
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: aiostreams
+  namespace: media
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`aiostreams.media.alixroden.com`)
+      kind: Rule
+      services:
+        - name: aiostreams
+          port: 3000
+  tls:
+    secretName: alixroden-co-uk-tls
