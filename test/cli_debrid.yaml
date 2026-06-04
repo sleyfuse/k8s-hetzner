@@ -37,6 +37,13 @@ spec:
           image: godver3/cli_debrid:dev
           securityContext:
             privileged: true
+          env:
+            - name: "PUID"
+              value: "1000"
+            - name: "PGID"
+              value: "1000"
+            - name: "TZ"
+              value: "Europe/Helsinki"
           ports:
             - containerPort: 5000
             - containerPort: 5001
