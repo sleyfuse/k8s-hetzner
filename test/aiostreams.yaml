@@ -33,30 +33,62 @@ spec:
           volumeMounts:
             - name: aiostreams-data
               mountPath: /app/data
-          envFrom:
-            - configMapRef:
-                name: aiostreams-config
           env:
             - name: BASE_URL
-              value: ${BASE_URL}
+              valueFrom:
+                configMapKeyRef:
+                  name: aiostreams-config
+                  key: BASE_URL
             - name: REDIS_URI
-              value: redis://valkey.infra.svc.cluster.local:6379
+              valueFrom:
+                configMapKeyRef:
+                  name: aiostreams-config
+                  key: REDIS_URI
             - name: SECRET_KEY
-              value: ${SECRET_KEY}
+              valueFrom:
+                configMapKeyRef:
+                  name: aiostreams-config
+                  key: REDIS_URI
+            - name: SECRET_KEY
+              valueFrom:
+                configMapKeyRef:
+                  name: aiostreams-config
+                  key: SECRET_KEY
             - name: DATABASE_URI
-              value: ${DATABASE_URI}
+              valueFrom:
+                configMapKeyRef:
+                  name: aiostreams-config
+                  key: DATABASE_URI
             - name: INTERNAL_URL
-              value: ${INTERNAL_URL}
+              valueFrom:
+                configMapKeyRef:
+                  name: aiostreams-config
+                  key: INTERNAL_URL
             - name: SYSTEM_LIFECYCLE_ENABLED
-              value: "false"
+              valueFrom:
+                configMapKeyRef:
+                  name: aiostreams-config
+                  key: SYSTEM_LIFECYCLE_ENABLED
             - name: PORT
-              value: "3000"
+              valueFrom:
+                configMapKeyRef:
+                  name: aiostreams-config
+                  key: PORT
             - name: NODE_ENV
-              value: "production"
+              valueFrom:
+                configMapKeyRef:
+                  name: aiostreams-config
+                  key: NODE_ENV
             - name: AIOSTREAMS_AUTH
-              value: ${AIOSTREAMS_AUTH}
+              valueFrom:
+                configMapKeyRef:
+                  name: aiostreams-config
+                  key: AIOSTREAMS_AUTH
             - name: AIOSTREAMS_AUTH_ADMINS
-              value: ${AIOSTREAMS_AUTH_ADMINS}
+              valueFrom:
+                configMapKeyRef:
+                  name: aiostreams-config
+                  key: AIOSTREAMS_AUTH_ADMINS
       volumes:
         - name: aiostreams-data
           persistentVolumeClaim:
@@ -106,6 +138,10 @@ data:
   INTERNAL_URL: "http://aiostreams:3000"
   AIOSTREAMS_AUTH: "admin:KXX14cdup$"
   AIOSTREAMS_AUTH_ADMINS: "admin"
+  REDIS_URI: "redis://valkey.infra.svc.cluster.local:6379"
+  SYSTEM_LIFECYCLE_ENABLED: "false"
+  PORT: "3000"
+  NODE_ENV: "production"
 ---
 apiVersion: postgresql.cnpg.io/v1
 kind: Database
