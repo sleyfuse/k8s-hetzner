@@ -56,6 +56,13 @@ spec:
     volumeHandle: pv-debrid
     volumeAttributes:
       remote: "zurg"
+      remotePath: ""
+      configData: |
+        [zurg]
+        type = webdav
+        url = http://zurg:9999/dav
+        vendor = other
+        pacer_min_sleep = 0
   mountOptions:
     - allow-other
     - allow-non-empty
