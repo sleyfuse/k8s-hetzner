@@ -37,7 +37,7 @@ spec:
   shards: 1
   replicas: 0
   config:
-    io-threads: 4
+    io-threads: "4"
     maxmemory-policy: noeviction
   users:
     - name: app
@@ -45,5 +45,5 @@ spec:
       permissions: "+@all ~* &*"
   persistence:
     size: 10Gi
-    storageClass: proxmox-csi-xfs
+    storageClassName: proxmox-csi-xfs
     reclaimPolicy: Retain
