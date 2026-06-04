@@ -48,11 +48,6 @@ spec:
               valueFrom:
                 configMapKeyRef:
                   name: aiostreams-config
-                  key: REDIS_URI
-            - name: SECRET_KEY
-              valueFrom:
-                configMapKeyRef:
-                  name: aiostreams-config
                   key: SECRET_KEY
             - name: DATABASE_URI
               valueFrom:
@@ -133,7 +128,7 @@ metadata:
     app: aiostreams
 data:
   BASE_URL: "https://aiostreams.media.alixroden.com"
-  SECRET_KEY: "a03b8f7ba8ba4b0eae9a4f8c0882969b3be8b81e289c8a8e1091017d2f2e45e2"
+  SECRET_KEY: "9f910a7ba92ba8204a9bfe628e82742aced6b2d72244ed5b04183de1024da6c5"
   DATABASE_URI: "postgres://app:6WcQS7IvEm988NeNvAvImWDnEyB6mKjXWAUUymLNRmUYiW765mp6VDmUIJNdvfSk@postgresql-rw.infra.svc.cluster.local:5432/aiostreams"
   INTERNAL_URL: "http://aiostreams:3000"
   AIOSTREAMS_AUTH: "admin:KXX14cdup$"
