@@ -78,6 +78,9 @@ spec:
               name: cinesync-data
             - name: fuse
               mountPath: /dev/fuse
+            - mountPath: /mnt
+              name: mediamount
+              mountPropagation: HostToContainer
           resources:
             requests:
               nextflow.io/fuse: "1"
@@ -87,6 +90,9 @@ spec:
         - name: cinesync-data
           persistentVolumeClaim:
             claimName: cinesync-data
+        - name: mediamount
+          persistentVolumeClaim:
+            claimName: media-pvc
         - name: fuse
           hostPath:
             path: /dev/fuse
@@ -117,6 +123,6 @@ spec:
       kind: Rule
       services:
         - name: cinesync
-          port: 5173
+          port: 8082
   tls:
     secretName: alixroden-co-uk-tls
