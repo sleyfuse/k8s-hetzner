@@ -49,6 +49,11 @@ spec:
               mountPath: /config
             - mountPath: /dev/shm
               name: dshm
+          resources:
+            requests:
+              gpu.intel.com/xe: "1"
+            limits:
+              gpu.intel.com/xe: "1"
       volumes:
         - name: webtop-config
           persistentVolumeClaim:
@@ -79,7 +84,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`webtop.example.com`)
+    - match: Host(`webtop.alixroden.co.uk`)
       kind: Rule
       services:
         - name: webtop
