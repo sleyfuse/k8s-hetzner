@@ -9,7 +9,7 @@ bootstrapTokens:
       - authentication
 kind: InitConfiguration
 localAPIEndpoint:
-  advertiseAddress: 1.2.3.4
+  advertiseAddress: 65.109.107.87
   bindPort: 6443
 nodeRegistration:
   criSocket: unix:///var/run/crio/crio.sock
@@ -26,23 +26,35 @@ timeouts:
   tlsBootstrap: 5m0s
   upgradeManifests: 5m0s
 ---
-apiServer: {}
+apiServer:
+  extraArgs:
+    - name: authorization-mode
+      value: Node,RBAC
+  certSANs:
+    - "alixroden.co.uk"
+    - "65.109.107.87"
 apiVersion: kubeadm.k8s.io/v1beta4
 caCertificateValidityPeriod: 87600h0m0s
 certificateValidityPeriod: 8760h0m0s
 certificatesDir: /etc/kubernetes/pki
 clusterName: kubernetes
-controllerManager: {}
+controllerManager:
+  extraArgs:
+    - name: node-cidr-mask-size
+      value: "20"
 dns: {}
 encryptionAlgorithm: RSA-2048
 etcd:
-  local:
-    dataDir: /var/lib/etcd
+  external:
+    endpoints:
+      - http://65.109.107.87:2379
 imageRepository: registry.k8s.io
 kind: ClusterConfiguration
 kubernetesVersion: 1.36.0
 networking:
   dnsDomain: cluster.local
   serviceSubnet: 10.96.0.0/12
-proxy: {}
+  podSubnet: 10.244.0.0/24
+proxy:
+  disabled: true
 scheduler: {}
