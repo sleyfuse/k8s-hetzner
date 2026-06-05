@@ -100,3 +100,4 @@ spec:
       services:
         - name: webtop
           port: 3001
+          scheme: https
