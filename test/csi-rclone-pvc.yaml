@@ -36,26 +36,22 @@ spec:
         user = aroden95@proton.me
         pass = bkRsLeiKrBYBObNBgKHHjbDqpWqGCXDFJYZP7QMibEWkOvwG
         vendor = other
-        pacer_min_sleep = 15s
+        pacer_min_sleep = 0
   mountOptions:
     - allow-other
     - allow-non-empty
-    - attr-timeout=10y
-    - buffer-size=64M
-    - checkers=16
-    - dir-cache-time=120s
-    - multi-thread-streams=0
-    - poll-interval=60s
-    - transfers=16
-    - vfs-cache-max-age=2M
+    - uid=1000
+    - gid=1000
+    - poll-interval=0
+    - dir-cache-time=10s
     - vfs-cache-mode=full
-    - vfs-cache-poll-interval=30s
-    - vfs-fast-fingerprint
-    - vfs-read-ahead=64M
-    - vfs-read-chunk-size=2M
-    - vfs-read-chunk-size-limit=64M
-    - vfs-read-chunk-streams=4
-    - vfs-read-wait=40ms
-    - vfs-refresh
+    - vfs-read-chunk-size=1M
+    - vfs-read-chunk-size-limit=32M
+    - buffer-size=64M
+    - vfs-cache-max-age=6h
+    - vfs-cache-max-size=100G
+    - attr-timeout=1s
+    - tpslimit=10
+    - tpslimit-burst=10
     - no-modtime
     - no-checksum
