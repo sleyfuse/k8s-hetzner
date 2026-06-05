@@ -99,4 +99,4 @@ spec:
       kind: Rule
       services:
         - name: webtop
-          port: 3000
+          port: 3001
