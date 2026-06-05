@@ -59,11 +59,8 @@ spec:
               mountPath: /config
             - mountPath: /dev/shm
               name: dshm
-          resources:
-            requests:
-              gpu.intel.com/xe: "1"
-            limits:
-              gpu.intel.com/xe: "1"
+            - mountPath: /dev/dri/renderD128
+              name: renderd128
       volumes:
         - name: webtop-config
           persistentVolumeClaim:
@@ -71,6 +68,10 @@ spec:
         - name: dshm
           emptyDir:
             medium: Memory
+        - hostPath:
+            path: /dev/dri/renderD128
+            type: CharDevice
+          name: renderd128
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
