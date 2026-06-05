@@ -3,6 +3,9 @@ apiVersion: v1
 metadata:
   name: webtop
   namespace: infra
+  annotations:
+    traefik.ingress.kubernetes.io/service.serversscheme: https
+    traefik.ingress.kubernetes.io/service.serverstransport: infra-skipverify@kubernetescrd
 spec:
   selector:
     app: webtop
@@ -91,6 +94,10 @@ kind: IngressRoute
 metadata:
   name: webtop
   namespace: infra
+  annotations:
+    external-dns.alpha.kubernetes.io/target: traefik.alixroden.co.uk
+    traefik.ingress.kubernetes.io/service.serversscheme: https
+    traefik.ingress.kubernetes.io/service.serverstransport: infra-skipverify@kubernetescrd
 spec:
   entryPoints:
     - websecure
@@ -101,3 +108,14 @@ spec:
         - name: webtop
           port: 3001
           scheme: https
+  ingressClassName: traefik
+  tls:
+    secretName: alixroden-co-uk-tls
+---
+apiVersion: traefik.io/v1alpha1
+kind: ServersTransport
+metadata:
+  name: skipverify
+  namespace: infra
+spec:
+  insecureSkipVerify: true
