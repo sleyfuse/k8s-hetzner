@@ -33,10 +33,16 @@ spec:
     spec:
       containers:
         - name: webtop
-          image: lscr.io/linuxserver/webtop:latest
+          image: lscr.io/linuxserver/webtop:alpine-kde
           ports:
             - containerPort: 3000
             - containerPort: 3001
+          securityContext:
+            privileged: true
+            capabilities:
+              add:
+                - NET_ADMIN
+                - SYS_MODULE
           env:
             - name: PUID
               value: "1000"
@@ -44,6 +50,10 @@ spec:
               value: "1000"
             - name: TZ
               value: "Etc/UTC"
+            - name: AUTO_GPU
+              value: "true"
+            - name: PIXELFLUX_WAYLAND
+              value: "true"
           volumeMounts:
             - name: webtop-config
               mountPath: /config
