@@ -57,6 +57,8 @@ spec:
               value: "true"
             - name: PIXELFLUX_WAYLAND
               value: "true"
+            - name: NO_GAMEPAD
+              value: "true"
           volumeMounts:
             - name: webtop-config
               mountPath: /config
