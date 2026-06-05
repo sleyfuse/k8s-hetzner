@@ -108,6 +108,7 @@ spec:
         - name: webtop
           port: 3001
           scheme: https
+          serversTransport: skipverify
   ingressClassName: traefik
   tls:
     secretName: alixroden-co-uk-tls
@@ -118,4 +119,5 @@ metadata:
   name: skipverify
   namespace: infra
 spec:
+  serverName: alixroden.co.uk
   insecureSkipVerify: true
