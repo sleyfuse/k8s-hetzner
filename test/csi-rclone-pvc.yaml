@@ -34,7 +34,7 @@ spec:
         type = webdav
         url = http://webdav.torbox.app
         user = aroden95@proton.me
-        pass = Do6TC_cCDcb65bv2y5kvnSokXGGyg9Qn2uiDNvn9z96jp9HQ
+        pass = bkRsLeiKrBYBObNBgKHHjbDqpWqGCXDFJYZP7QMibEWkOvwG
         vendor = other
         pacer_min_sleep = 0
   mountOptions:
